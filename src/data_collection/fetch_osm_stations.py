@@ -14,6 +14,7 @@ import pandas as pd
 OVERPASS_URLS = [
     "https://overpass-api.de/api/interpreter",
     "https://overpass.kumi.systems/api/interpreter",
+    "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
 ]
 
 # Gujarat = admin_level 4 relation. Pull anything tagged as a fuel station that
@@ -30,19 +31,36 @@ area["ISO3166-2"="IN-GJ"]["boundary"="administrative"]->.gj;
 out center tags;
 """
 
+QUERY_BBOX = r"""
+[out:json][timeout:180];
+(
+  nwr["amenity"="fuel"]["fuel:cng"="yes"](20.0,68.0,24.8,74.6);
+  nwr["amenity"="fuel"]["name"~"CNG|Gujarat Gas|Sabarmati|Adani Total|Torrent|Think Gas|Indian Oil.Adani|IOAGPL",i](20.0,68.0,24.8,74.6);
+  nwr["amenity"="fuel"]["operator"~"Gujarat Gas|Sabarmati|Adani Total|Torrent|Think Gas|IOAGPL",i](20.0,68.0,24.8,74.6);
+  nwr["amenity"="fuel"]["brand"~"Gujarat Gas|Sabarmati|Adani Total|Torrent|Think Gas|IOAGPL",i](20.0,68.0,24.8,74.6);
+);
+out center tags;
+"""
+
+HEADERS = {
+    "User-Agent": "GujaratCNGDemandPlanner/1.0 (academic_hackathon_project)"
+}
+
 
 def fetch():
     last_err = None
-    for url in OVERPASS_URLS:
-        try:
-            print(f"Querying {url} ...")
-            r = requests.post(url, data={"data": QUERY}, timeout=240)
-            r.raise_for_status()
-            return r.json()["elements"]
-        except Exception as e:  # try next mirror
-            last_err = e
-            print("  failed:", e)
-            time.sleep(5)
+    # Try mirrors first with standard QUERY, then with QUERY_BBOX if area query fails
+    for q_name, q_text in [("area query", QUERY), ("bbox fallback query", QUERY_BBOX)]:
+        for url in OVERPASS_URLS:
+            try:
+                print(f"Querying {url} with {q_name} ...")
+                r = requests.post(url, data={"data": q_text}, headers=HEADERS, timeout=240)
+                r.raise_for_status()
+                return r.json()["elements"]
+            except Exception as e:  # try next mirror
+                last_err = e
+                print("  failed:", e)
+                time.sleep(3)
     raise RuntimeError(f"All Overpass mirrors failed: {last_err}")
 
 
@@ -99,7 +117,10 @@ def main():
 
     # Remove exact duplicates (same OSM object) and near-duplicates (<30 m apart,
     # same operator) which usually mean a node + a building outline of the same site.
+    n_raw = len(df)
     df = df.drop_duplicates(subset=["osm_type", "osm_id"])
+    n_exact_dups = n_raw - len(df)
+
     df = df.sort_values(["cgd_company", "lat", "lon"]).reset_index(drop=True)
     keep = []
     seen = []
@@ -112,19 +133,28 @@ def main():
         if not dup:
             keep.append(i)
             seen.append((r["lat"], r["lon"], r["cgd_company"]))
+    before_near = len(df)
     df = df.loc[keep].reset_index(drop=True)
+    n_near_dups = before_near - len(df)
+    n_total_dups = n_exact_dups + n_near_dups
 
     # Keep only points inside a rough Gujarat bounding box (guards against bad tags)
+    before_bbox = len(df)
     df = df[df["lat"].between(20.0, 24.8) & df["lon"].between(68.0, 74.6)]
+    n_outside_bbox = before_bbox - len(df)
 
     df.to_csv("osm_cng_stations_gujarat.csv", index=False)
-    print(f"\nSaved {len(df)} stations -> osm_cng_stations_gujarat.csv")
+    print(f"\nTotal raw elements fetched: {n_raw}")
+    print(f"Exact duplicates removed: {n_exact_dups}")
+    print(f"Near-duplicates (<30m) removed: {n_near_dups}")
+    print(f"Total duplicates removed: {n_total_dups}")
+    print(f"Points outside Gujarat bounding box: {n_outside_bbox}")
+    print(f"Saved {len(df)} stations -> osm_cng_stations_gujarat.csv")
+    print("\nCounts per CGD company:")
     print(df["cgd_company"].value_counts())
-    print(
-        "\nNOTE: OSM is volunteer-mapped, so it will not contain every station. "
-        "Compare the 'Gujarat Gas' count with GGCL's reported ~560 stations in Gujarat "
-        "and state the coverage % in your report."
-    )
+    gg_count = (df["cgd_company"] == "Gujarat Gas").sum()
+    coverage_pct = (gg_count / 560.0) * 100
+    print(f"\nGujarat Gas stations in OSM: {gg_count} vs ~560 reported ({coverage_pct:.2f}% coverage)")
 
 
 if __name__ == "__main__":

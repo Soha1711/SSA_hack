@@ -1,0 +1,65 @@
+osm_type,osm_id,lat,lon,name,brand,operator,fuel_cng,opening_hours,start_date,addr_city,addr_district,cgd_company
+node,4945175021,22.3153114,73.164572,Cng adani,,,,,,,,Adani Total / IOAGPL
+way,505211411,22.379562,73.1551168,Adani cng,,,,,,,,Adani Total / IOAGPL
+way,840511410,22.9991585,72.603628,Adani CNG Station,Adani,Adani,yes,,,,,Adani Total / IOAGPL
+node,3393656497,23.011445,72.5864365,Adani CNG Gas Station,Adani,Adani,,,,,,Adani Total / IOAGPL
+node,4326504193,23.0135186,72.5644029,CNG Adani,,,,,,,,Adani Total / IOAGPL
+node,2562424798,21.7188022,73.0030613,Gujarat Gas,,,,,,,,Gujarat Gas
+node,12592981557,21.7502621,72.1332163,Gujarat Gas CNG Station,,,,,,,,Gujarat Gas
+node,4424519496,22.7145446,71.6055482,Gujarat Gas CNG pump,,,,,,,,Gujarat Gas
+node,10790141203,22.8434432,70.8597454,Gujarat Gas CNG Station,,,,,,,,Gujarat Gas
+node,4424519692,22.8604328,71.7978884,Gujarat gas CNG,,,,,,,,Gujarat Gas
+node,14090335145,23.1835434,72.6876809,Gujarat Gas CNG Station,,,,,,,,Gujarat Gas
+way,1550402171,23.2705171,72.7563133,Sabarmati Gas CNG Station,Sabarmati Gas,કનગ પંપ,yes,,,,,Sabarmati Gas
+way,1550402181,23.470464,72.8768835,Sabarmati CNG,Sabarmati CNG,Sabarmati CNG,yes,,,,,Sabarmati Gas
+way,1459471306,23.5817638,72.9656923,sabarmati gas station,sabarmati,,yes,,,,,Sabarmati Gas
+way,1335317150,23.5926925,72.330038,Sabarmati Gas,Sabarmati Gas,,yes,,,,,Sabarmati Gas
+node,5566618420,20.3215288,72.9026894,Naresh Desai CNG pump,,,,,,,,Unknown / other
+node,5393262460,20.9117077,70.3628123,,,,yes,,,,,Unknown / other
+way,893282697,21.1690962,72.7947791,HPCL Petrol Pump,HP,,yes,,,Surat,,Unknown / other
+node,4707863390,21.2988092,72.9538973,Cng petrol pump,,,,,,,,Unknown / other
+way,1558942777,21.3539926,72.0291943,Indian Oil petrol pump,Indian Oil,,yes,,,,,Unknown / other
+node,14111948745,21.7401218,70.4872926,Bhakti Fuels,Indian Oil,Bhakti Fuels,yes,,,,,Unknown / other
+node,5291486626,21.8385453,73.0527725,CNG -kabir petrolum,,,,,,,,Unknown / other
+node,4678057691,22.0797165,73.1603384,CNG gujarat,,,,,,,,Unknown / other
+node,5725206321,22.2343063,73.1883648,CNG pump Bharat Petroleum,,,,,,,,Unknown / other
+node,4456349389,22.2585769,70.7040292,CNG Indian oil petrol pump,Indian Oil,,,,,,,Unknown / other
+node,4456348289,22.2841858,70.7691974,CNG Indian oil petrol pump,Indian Oil,,,,,,,Unknown / other
+node,4945168222,22.3152894,73.1648741,Cng Vadodara,,,,,,,,Unknown / other
+node,13149521937,22.3282563,73.2627442,Pioneer Petrol Pump,HP,,yes,,,vadodara,Vadodara,Unknown / other
+node,4435502490,22.3450417,73.2024833,CNG Petrol pump,,,,,,,,Unknown / other
+node,6842759386,22.3796541,73.1916628,CNG pump,,,,,,,,Unknown / other
+node,5261343721,22.4254798,71.0855406,CNG Bamanbore,,,,,,,,Unknown / other
+node,4435495490,22.5398438,72.9288688,CNG pump Gspc,,,,,,,,Unknown / other
+node,10203915673,22.5618013,70.4191455,Bharat Petroleum,Bharat Petroleum,,yes,,,Dhrol,,Unknown / other
+node,4292071689,22.5619694,71.7231369,CNG,,,,,,,,Unknown / other
+node,4457370764,22.5640796,71.717619,CNG,,,,,,,,Unknown / other
+node,4456590193,22.5743828,71.8150878,CNG pump,,,,,,,,Unknown / other
+node,7728527138,22.6091626,73.4620088,Gandhi Petrol Pump,,,yes,,,Kalol,,Unknown / other
+node,10011904201,22.6176194,70.5497844,Bharat Petroleum,Bharat Petroleum,,yes,,,"At Lalpur ,Sub Dist Dhrol ,Dist Jamnagar",,Unknown / other
+node,10011904215,22.6203834,70.5222282,Indian Oil,Indian Oil,,yes,,,,,Unknown / other
+node,4456611890,22.6461786,72.2063059,CNG Hp petroleum,,,,,,,,Unknown / other
+node,10233313280,22.6707854,70.752164,Gulab Bharat Petroleum And CNG,Bharat Petroleum,,yes,,,Tankara,,Unknown / other
+node,12129479158,22.8671793,72.4576817,Indian Oil,Indian Oil,,yes,,,,,Unknown / other
+node,5291854424,22.9359318,72.49878,CNG stattion,,,,,,,,Unknown / other
+node,4412725295,23.0219685,72.6508243,Petrol CNG pump,,,,,,,,Unknown / other
+way,366648662,23.026704,72.5260465,CNG petrol pump,,,,,,,,Unknown / other
+node,5387295121,23.0289447,72.6734332,Cng and petrol pump,,,,,,,,Unknown / other
+node,5753318022,23.0292807,72.4750283,Indian oil CNG n Petrol,Indian Oil,,,,,,,Unknown / other
+node,4483474713,23.0400891,72.5781297,CNG Bharat petroleum,,,,,,,,Unknown / other
+node,4358646485,23.0523451,72.6319464,Cng Petrol pump,,,,,,,,Unknown / other
+node,4358631802,23.0579511,72.6431616,,,,yes,,,,,Unknown / other
+node,5286955825,23.0846729,72.6862592,CNG gas station,,,,,,,,Unknown / other
+node,5698657522,23.1619162,72.5882763,Cng station,,,,,,,,Unknown / other
+node,4476395495,23.210959,72.5295505,CNG gas only,,,,,,,,Unknown / other
+way,1564410058,23.2152528,73.1376305,Bharat Gas,Bharat Gas Resources Limited,Vinayak Energy,yes,24/7,,,,Unknown / other
+way,1550197282,23.2260031,72.7310181,Hindustan Petroleum Corporation Limited,Hindustan Petroleum,Hindustan Petroleum Corporation Limited,yes,,,Mota Chiloda,,Unknown / other
+way,1561240191,23.2300821,72.7239165,Bharat petroleum corporaion limited,Bharat Petroleum,,yes,,,,,Unknown / other
+way,1550197285,23.2503215,72.7422529,Nayara Energy Ltd.,Nayara,,yes,,,,,Unknown / other
+node,4301915191,23.2763234,72.443245,Bharat patrolium CNG,,,,,,,,Unknown / other
+node,4291987897,23.2796375,72.4407812,Bharat petroleum CNG,,,,,,,,Unknown / other
+way,1550402173,23.2904495,72.763308,Bharat Petroleum,Bharat Petroleum,AMBICA PETROLEUM,yes,Mo-Su 06:00-23:00,,,,Unknown / other
+node,4292039997,23.3721677,72.4089456,bharat petroleum CNG,,,,,,,,Unknown / other
+node,4294642592,23.5685883,72.35461,CNG station  Mother,,,,,,,,Unknown / other
+node,2525193306,23.5877546,72.3770491,Pashabhai B Patel  Petrol n CNG,,,,,,,,Unknown / other
+node,4741560486,23.609766,72.3670598,MM Bharat Petroleum,Bharat Petroleum,,yes,,,,,Unknown / other
