@@ -118,7 +118,7 @@ def main():
     ap.add_argument("--header-row", type=int, default=0)
     ap.add_argument("--year", type=int, default=None, help="Year to attach when columns are bare month names")
     ap.add_argument("--district-rows", action="store_true", help="Row labels are RTOs/districts (already CNG-only)")
-    ap.add_argument("--out", default="vahan_cng_tidy.csv")
+    ap.add_argument("--out", default="data/processed/vahan_cng_tidy.csv")
     args = ap.parse_args()
 
     files = []
