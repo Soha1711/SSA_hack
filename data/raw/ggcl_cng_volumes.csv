@@ -1,11 +1,27 @@
 quarter,quarter_end,cng_volume_mmscmd,cng_stations_gujarat,source
+Q1 FY21,2020-06-30,0.68,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/b9829ce3-1493-455b-b9f8-13da762394c8.pdf p.4
+Q2 FY21,2020-09-30,1.31,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/45e317c2-11a5-48b4-8cf4-ef9302e1b4b5.pdf p.3
+Q3 FY21,2020-12-31,1.54,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/a3b145cf-e204-4ec2-9e96-a67b5ebda834.pdf p.5
+Q4 FY21,2021-03-31,1.70,559,https://www.bseindia.com/xml-data/corpfiling/AttachLive/c56cf679-24ec-4076-a0f1-4dbfa4a13d71.pdf p.4
+Q1 FY22,2021-06-30,1.56,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/5a7db037-ea76-4648-9331-b0e6e7681c4e.pdf p.4
+Q2 FY22,2021-09-30,2.00,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/d63c5a61-8311-4ebc-b397-ffcf0d4948a2.pdf p.5
+Q3 FY22,2021-12-31,2.20,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/9bb72a44-ec85-4876-bce7-72ceecb0f5be.pdf p.6
+Q4 FY22,2022-03-31,2.23,561,https://www.bseindia.com/xml-data/corpfiling/AttachLive/6987f6bb-ca05-4c6e-a22b-2d7c58ab4231.pdf p.7
+Q1 FY23,2022-06-30,2.44,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/5cb93e62-c0e8-4660-8438-e6963e6db8ad.pdf p.4
+Q2 FY23,2022-09-30,2.32,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/f14bbba8-385c-4e89-bdbe-13583ca438b1.pdf p.5
+Q3 FY23,2022-12-31,2.43,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/e3b6f849-cfa2-4ba2-a636-6db8a2f4ad73.pdf p.5
+Q4 FY23,2023-03-31,2.50,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/a5b67812-70b1-419b-a01f-ef079b76a084.pdf p.6
 Q1 FY24,2023-06-30,2.61,,Gujarat Gas Q1 FY24 press release
+Q2 FY24,2023-09-30,2.62,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/456cb1f0-0a5b-4ec2-9e5b-43d8a6fa0e23.pdf p.5
 Q3 FY24,2023-12-31,2.78,562,Gujarat Gas Q3 FY24 press release / investor presentation
+Q4 FY24,2024-03-31,2.89,565,https://www.bseindia.com/xml-data/corpfiling/AttachLive/b7cb9345-a982-4fcf-8dc4-9a8ebf1b34c1.pdf p.5
 Q1 FY25,2024-06-30,2.98,,Gujarat Gas Q1 FY25 press release
-Q2 FY24,2023-09-30,,,FILL FROM Q2 FY24 PRESS RELEASE
-Q4 FY24,2024-03-31,,,FILL FROM Q4 FY24 PRESS RELEASE
-Q2 FY25,2024-09-30,,,FILL
-Q3 FY25,2024-12-31,,,FILL
-Q4 FY25,2025-03-31,,,FILL
-Q1 FY26,2025-06-30,,,FILL
-Q2 FY26,2025-09-30,,,FILL
+Q2 FY25,2024-09-30,2.93,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/2ba994d5-8f64-4433-a8f8-b32ee8f0dc44.pdf p.4
+Q3 FY25,2024-12-31,3.12,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/14d8eb34-6014-43cb-93b5-ea9333da5629.pdf p.5
+Q4 FY25,2025-03-31,3.22,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/7a82ff22-bc09-43c3-b9ee-341e4a66fbc4.pdf p.5
+Q1 FY26,2025-06-30,3.33,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/ea392f44-77a8-433e-b98a-7c980f8373b3.pdf p.3
+Q2 FY26,2025-09-30,3.32,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/99bfa4a8-6cfb-4a55-b778-cf1c8189fa34.pdf p.3
+Q3 FY26,2025-12-31,3.45,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/5d4e12fa-3850-482a-aef2-19e917dcb639.pdf p.3
+Q4 FY26,2026-03-31,3.60,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/4d7328af-d102-4c28-98e3-0c451b682e01.pdf p.4
+Q1 FY27,2026-06-30,3.76,,https://www.bseindia.com/xml-data/corpfiling/AttachLive/2f8b54e3-ea72-4cf4-912b-34a9b7dc3f92.pdf p.4
+Q2 FY27,2026-09-30,,,https://www.bseindia.com/ (Meeting scheduled Nov 5 2026 - unreleased)
