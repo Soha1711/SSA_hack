@@ -1,0 +1,13 @@
+city,catchment_minutes,overlap_threshold_pct,distance_straight_km,distance_road_km
+Surat,5,30,2.66,3.4
+Surat,5,20,3.02,3.87
+Surat,5,10,3.43,4.39
+Surat,10,30,6.79,8.69
+Surat,10,20,7.11,9.11
+Surat,10,10,7.83,10.02
+Rajkot,5,30,2.45,3.13
+Rajkot,5,20,3.25,4.17
+Rajkot,5,10,3.64,4.66
+Rajkot,10,30,5.48,7.01
+Rajkot,10,20,6.85,8.77
+Rajkot,10,10,7.58,9.7
