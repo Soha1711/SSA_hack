@@ -1,0 +1,4 @@
+quarter,model,point_forecast_mmscmd,residual_std,lower_80_mmscmd,upper_80_mmscmd,method_note
+Q2 FY27,"Ridge Regression (Standardized, lag1 + fleet)",3.8842,0.0656,3.8001,3.9683,Winning model; 80% empirical interval based on test residuals (z=1.282)
+Q2 FY27,Linear Regression (lag1 + fleet + price_ratio),4.0052,0.0685,3.9174,4.093,3-feature linear specification
+Q2 FY27,Naive (lag 1),3.76,0.0745,3.6645,3.8555,Flat volume assumption (Q1 FY27 actual)
