@@ -1,0 +1,185 @@
+city,station_name,address,lat,lon,match_method,confidence,geocoded
+Surat,GGL Shree Umiya Enterprise,"Bardoli, Bardoli Surat Highway, Bardoli - 394601 Dist: Surat",,,,none,False
+Surat,GGL Shree Khedut Sahkari Ginning & Pressing Society Limited,"Baben, Opp. Bardoli Sugar Factory, Bardoli - 394601 Dist: Surat",,,,none,False
+Surat,Wadiwala Petroleum,"Opp. GSRTC Bus Depot, Surat Bardoli Road, Bardoli, Bardoli - 394650 Dist: Surat",21.2142114,72.8869924,pincode_district,low,True
+Surat,Tulsi Fuels,"Surali (Madhi), Madhi Syadla Road, Bardoli - 394340 Dist: Surat",,,,none,False
+Surat,JBD Fuel Services,"NH-53,Khali, Vyara to Bardoli Carriageway, Bardoli - 394620 Dist: Surat",21.2094892,72.8317058,name_locality_district,medium,True
+Surat,Gujarat Gas (Icchapore Hazira),"Icchapore, Hazira, Choryasi - 394510, Tal: Choryasi, Dist: Surat",21.1902074,72.7274135,pincode_district,low,True
+Surat,GGL Kailash CNG Filling Station,"NH48, Kadodara, Choryasi - 394327, Tal: Choryasi, Dist: Surat",21.2744158,72.9546946,name_locality_district,medium,True
+Surat,Lalit Motors,"NH53, Ghabeni, Sachin Magdalla Road, Choryasi - 394230, Tal: Choryasi, Dist: Surat",21.1821552,72.6991593,name_locality_district,medium,True
+Surat,Guru Ashish Petroleum,"Variav, Hazira Sayan Road, Choryasi - 394107, Tal: Choryasi, Dist: Surat",21.2595295,72.8167703,name_locality_district,medium,True
+Surat,Sahyog Petroleum,"Lajpore, Opp. Lajpore Central Jail, Surat Navsari Road, Choryasi - 394235, Tal: Choryasi, Dist: Surat",21.0777822,72.8895746,pincode_district,low,True
+Surat,Shree Saiasha Petroleum,"Bhatpore, NH53, Hazira Magdalla Road, Nr. Magdalla Bridge, Choryasi - 394510, Tal: Choryasi, Dist: Surat",21.1902074,72.7274135,pincode_district,low,True
+Surat,Sai Petroleum,"Palsana Crossroad, Sachin, Choryasi - 394230, Tal: Choryasi, Dist: Surat",21.0862619,72.8696349,pincode_district,low,True
+Surat,Shrey Petroleum,"NH228, Saniya Kande, Choryasi - 394210, Tal: Choryasi, Dist: Surat",21.1589671,72.8570411,pincode_district,low,True
+Surat,The Purushottam Farmers Co. Op. Society,"Jahangirpura, Olpad Surat Road, Choryasi - 395005, Tal: Choryasi, Dist: Surat",21.2324161,72.7957353,name_locality_district,medium,True
+Surat,IOCL COCO Boon Gasoline (Shantilal & Sons),"Survey No, R.S. No. 340/12/2, Plot No. 11, 12 Part, Block No. 73, AT UNN, Surat City, Taluka: Choryasi,, Choryasi - 395001 Dist: Surat",21.1822003,72.8192651,pincode_district,low,True
+Surat,HPCL COMCO,"Survey no.100, Opp. Bharat Hospital, Opp Saroli BRTS Bus Stand, Saroli Choryasi, Saroli,, Choryasi - 395010 Dist: Surat",21.1999924,72.8743108,pincode_district,low,True
+Surat,CPS Eco Friendly Fuel Centre,"Plot No, R.S.No. 245, F.P.No.94, T.P. Scheme No.2, Bamroli Road, Udhna, Surat, Tal. Choryasii,, Choryasi - 394210 Dist: Surat",21.2094892,72.8317058,name_locality_district,medium,True
+Surat,Shakti Petroleum,"Survey No: 183, Dindoli To Madhuram Cirlce Road,, Choryasi - 394210, Tal: Choryasi, Dist: Surat",21.1589671,72.8570411,pincode_district,low,True
+Surat,Stuti Petroleum,"Plot No: E, Survey No: 180, Sachin G.I.D.C Nakka, Sachin G.I.D.C Nakka, Unn, Tal. Choryasi, Dist. Surat, Choryasi - 394305 Dist: Surat",21.1439128,72.9221793,pincode_district,low,True
+Surat,Thakor Petroleum,"Survey No: 60, On Dindoli Sachin Road, Bhestan Char Rasta, Eklara, Tal. Choryasi, Dist. Surat, Choryasi - 394305 Dist: Surat",21.1439128,72.9221793,pincode_district,low,True
+Surat,Josh Petroleum,"Plot No: 96 Paiki, Survey No: 96 Paiki, Bhestan,Vidhata Complex, Surat, Tal. Choryasi, Dist. Surat, Choryasi - 394221 Dist: Surat",21.1225832,72.8630342,name_locality_district,medium,True
+Surat,Sai Shubham Petroleum,"Plot No: Tp: 47 Fp: 47, Survey No: 131/1 Paiki 1, Bhestan, Udhna Sachin Main Road, Opp Pushpak Cinema, Choryasi - 395023, Tal: Choryasi, Dist: Surat",21.1225832,72.8630342,name_locality_district,medium,True
+Surat,GGL Jay Gurudev Gas Station,"Abrama, Near P P Savani School, Kamrej - 394105 Dist: Surat",21.2491175,72.9042168,name_locality_district,medium,True
+Surat,V D Patel & Co.,"NH48, Amboli, Near Choryasi (Kamrej) Toll Plaza, Kamrej - 394150 Dist: Surat",21.2744158,72.9546946,name_locality_district,medium,True
+Surat,Shantaba Petroleum,"Village Kamrej, Kamrej - 394185 Dist: Surat",21.2797773,72.948269,full_address,high,True
+Surat,Jay Babrik Kisan Seva Kendra,"Kosamda, Canal Road, Kamrej - 395006 Dist: Surat",21.2708731,72.918644,pincode_district,low,True
+Surat,Shiv Krupa Petroleum,"Antroli, Velanja Pardi Road, Kamrej - 394150 Dist: Surat",21.3009526,72.9255974,pincode_district,low,True
+Surat,GGL Swastik CNG Station,"Survey No. 160, Block No. 143/Paiki 16/1, Sankruti Industrial Estate, Diamond Nagar, Village Laskana, Surat Kamrej Road, Tal. Kamrej, Dist. Surat, Kamrej - 395008 Dist: Surat",21.2047761,72.8338018,pincode_district,low,True
+Surat,GGL Devkrupa Green Energy,"Block No. 124/P/2, Village Laskana, Tal. Kamrej, Dist. Surat, Kamrej - 395006 Dist: Surat",21.2494172,72.9265594,name_locality_district,medium,True
+Surat,Shankar Petroleum,"NH 48, Valthan, Kamrej - Kadodara Carriageway, Kamrej - 394310 Dist: Surat",21.2094892,72.8317058,name_locality_district,medium,True
+Surat,Shree Gautam Petroleum,"Jharpan (Zarpan), Areth, Tadkeshwar Mandvi Road, Mandvi - 394163 Dist: Surat",,,,none,False
+Surat,GGL Omkar Enterprise,"Karanj, Kim Tadkeshwar Road, Mandvi - 394110 Dist: Surat",,,,none,False
+Surat,Dhansukhlal C Shah,"At & Post Mandvi, Mandvi - 394160 Dist: Surat",,,,none,False
+Surat,GGL Royal Gas Agency,"NH 48, Kim, Near Kim Cross Road, Mangrol - 394110 Dist: Surat",21.2094892,72.8317058,name_locality_district,medium,True
+Surat,GGL Shyamala CNG Fuel Station,"NH48, Kosamba, Near Kosamba Cross Road, Mangrol - 394120 Dist: Surat",21.2744158,72.9546946,name_locality_district,medium,True
+Surat,GGL Jyoti Petroleum,"NH48, Nana Borsara, Mangrol - 394115 Dist: Surat",21.2744158,72.9546946,name_locality_district,medium,True
+Surat,Y D PATEL,"NH 48, Palod, Near Kim Cross Road, Mangrol - 394110 Dist: Surat",21.2094892,72.8317058,name_locality_district,medium,True
+Surat,Vaidhehi Petroleum,"Village Zankhvav, Near ITI, Mangrol - 394440 Dist: Surat",,,,none,False
+Surat,GGL Ruturaj CNG Station,"Mangrol, Near Mosali Cross Road, Mangrol - 394421 Dist: Surat",,,,none,False
+Surat,GGL Divine Fuel Services Private Limited,"Olpad, Surat Ankleshwar Road, Olpad - 394540 Dist: Surat",21.3360054,72.7516479,name_locality_district,medium,True
+Surat,GGL Super Auto Fuel,"Sayan, Sayan Kim Road, Olpad - 394130 Dist: Surat",21.3174619,72.8900005,name_locality_district,medium,True
+Surat,Pindeshwar Petroleum,"Village Pinjarat, Olpad - 395005 Dist: Surat",21.256555,72.6652803,full_address,high,True
+Surat,GGL Pragati CNG Station,"Palsana, Near NH48, Palsana Cross Road, Palsana - 394317 Dist: Surat",21.0859408,72.978046,name_locality_district,medium,True
+Surat,Sai Krishna Petroleum,"Jolva, Tantithaiya Jolva Road, Palsana - 394327 Dist: Surat",21.1662669,72.9644056,pincode_district,low,True
+Surat,GGL Shree Mahalaxmi CNG,"Bamroli Road, Nr. Udhna Magdalla Road, Surat - 395017, Tal: Surat, Dist: Surat",21.1769121,72.8255558,name_locality_district,medium,True
+Surat,GGL Bharti Enterprise,"Bhatar, Near Bhatar Cross Road, Surat - 394327, Tal: Surat, Dist: Surat",21.173602,72.8171304,name_locality_district,medium,True
+Surat,GGL Divine Fuel Services Private Limited,"Pandesara, Udhna Pandesara Road, Surat - 395023, Tal: Surat, Dist: Surat",21.14863,72.831477,name_locality_district,medium,True
+Surat,GGL King International,"Chowk, Kamal Gali, Surat - 395008, Tal: Surat, Dist: Surat",21.2147606,72.8886881,name_locality_district,medium,True
+Surat,Gujarat Gas (Adajan Gam),"Adajan Gam, Surat - 395009, Tal: Surat, Dist: Surat",21.1901059,72.7890318,full_address,high,True
+Surat,GGL N J CNG Station,"Magob, Surat Bardoli Road, Surat - 395101, Tal: Surat, Dist: Surat",21.1902027,72.8685756,name_locality_district,medium,True
+Surat,GGL The Puna Kumbhariya Group Co-Operative Fruit & Vegetable Growers Society Limited,"Poona Kumbharia Road, Surat - 395101, Tal: Surat, Dist: Surat",21.2052984,72.8628127,pincode_district,low,True
+Surat,GGL Shreeji CNG Fuel Station,"Godadara, Surat - 394210, Tal: Surat, Dist: Surat",21.1754975,72.872165,full_address,high,True
+Surat,GGL J J Patel & Brothers,"Adajan, Near Sahej Super Market, Surat - 395009, Tal: Surat, Dist: Surat",21.2651204,72.8499128,name_locality_district,medium,True
+Surat,Jalaram Petroleum,"Near Mansarovar Circle, Amroli, Surat - 394107, Tal: Surat, Dist: Surat",21.2432906,72.8495766,pincode_district,low,True
+Surat,GGL V V & Brothers,"Pal, Near L P Savani Circle, Surat - 395009, Tal: Surat, Dist: Surat",21.1967679,72.7782724,name_locality_district,medium,True
+Surat,Sainath Petroleum,"Near Udhna Railway Station, Udhna, Surat - 394210, Tal: Surat, Dist: Surat",21.1589671,72.8570411,pincode_district,low,True
+Surat,Shree Siddhivinayak Petroleum,"Opp. Parnnath Hospital, Ved Road, Surat - 395004 Dist: Surat",21.2441936,72.8196257,name_locality_district,medium,True
+Surat,Ramdev Petroleum,"Bhatena, Opp. Siddhivinayak Temple, Surat - 395002, Tal: Surat, Dist: Surat",21.182015,72.8246523,pincode_district,low,True
+Surat,GGL Dhru Petroleum,"Dandi Road, Near Ugat Canal, Surat - 395005, Tal: Surat, Dist: Surat",21.2269421,72.7843535,name_locality_district,medium,True
+Surat,GGL Jay Mahadev CNG Fuel Station,"Mota Varachha, Near Water Tank, Surat - 394101, Tal: Surat, Dist: Surat",21.2387642,72.8790728,pincode_district,low,True
+Surat,GGL Kahan CNG Station,"Nana Varachha, Below Flyover, Surat - 395006, Tal: Surat, Dist: Surat",21.2258181,72.8889924,name_locality_district,medium,True
+Surat,GGL Nanalal Polyester Private Limited,"Varachha, Below Flyover, Opp, Kapodra Police station, Surat - 395006, Tal: Surat, Dist: Surat",21.2130113,72.8572587,name_locality_district,medium,True
+Surat,GGL Uma CNG Fuel,"Dindoli, Surat - 394210, Tal: Surat, Dist: Surat",21.1523213,72.8724865,full_address,high,True
+Surat,Udhna Petroleum,"Udhna Pandesara Road, Surat - 394210, Tal: Surat, Dist: Surat",21.1589671,72.8570411,pincode_district,low,True
+Surat,Gujarat Gas (GSRTC LH Road),"GSRTC (L.H. Road), Surat - 395008, Tal: Surat, Dist: Surat",21.2047761,72.8338018,pincode_district,low,True
+Surat,GGL Vishat Gas CNG Station,"Bamroli-Vadod Road, Surat - 394220, Tal: Surat, Dist: Surat",21.1510223,72.8323072,pincode_district,low,True
+Surat,Neelam Petroleum,"Katargam, Near Godhani Circle, Surat - 395008, Tal: Surat, Dist: Surat",21.2288221,72.8253083,name_locality_district,medium,True
+Surat,Shantilal & Sons,"Opp. Sardar Market, Surat Kadodara Road, Surat - 395010, Tal: Surat, Dist: Surat",21.1999924,72.8743108,pincode_district,low,True
+Surat,Krishna Petroleum,"Khatodara, Near Kharwar Nagar, Surat - 395002, Tal: Surat, Dist: Surat",21.182015,72.8246523,pincode_district,low,True
+Surat,Shakti Petroleum,"Pandesara, Udhna Pandesara Road, Surat - 394220, Tal: Surat, Dist: Surat",21.14863,72.831477,name_locality_district,medium,True
+Surat,Anand Petroleum,"Sardar Chowk, Utran, Surat - 394105, Tal: Surat, Dist: Surat",21.2402038,72.8693579,pincode_district,low,True
+Surat,Tejas Petroleum,"G. H. B. Road, Bamroli â€“ Pandesara Road, Pandesara, Surat - 394220, Tal: Surat, Dist: Surat",21.1510223,72.8323072,pincode_district,low,True
+Surat,Krushna Petroleum,"Plot No. 127, Opp Kunjan Plaza,Nr. Hanuman Temple, Vanmali Junction,Puna Canal Road, Surat,, Surat - 395010, Tal: Surat, Dist: Surat",21.1999924,72.8743108,pincode_district,low,True
+Surat,J K Petroleum,"T.P.NO.10,F.P.NO.87,Near Surati Villa Restaurant, Pal, Surat-Gujarat 395009. TA: Chorasi,, Surat - 395009, Tal: Surat, Dist: Surat",21.2011213,72.7891501,pincode_district,low,True
+Surat,Om Sai Petroleum,"Plot No: TP 16 (PAL) FP 33, PART A, Survey No: Block No. 495, Galaxy Circle to Green City Road, Pal,, Surat - 395009, Tal: Surat, Dist: Surat",21.2011213,72.7891501,pincode_district,low,True
+Surat,GGL Crown Distributors,"Katargam, Near Gajera Circle,, Surat - 395008, Tal: Surat, Dist: Surat",21.2288221,72.8253083,name_locality_district,medium,True
+Surat,G M Patel,"Plot No: 42, Survey No: 28/1, Nana Varachha, Sarthana Zoo, Surat, Tal. & Dist. Surat, Surat - 395006 Dist: Surat",21.2258181,72.8889924,name_locality_district,medium,True
+Surat,Sahaj Petroleum,"At. Pal, Gaurav Path Road, Nr. Pal Sewerage Treatment Plant, Adajan, Surat, Surat - 395009, Tal: Surat, Dist: Surat",21.1848846,72.7897479,name_locality_district,medium,True
+Rajkot,Dhyey Petroleum,"Dhoraji, Dhoraji Junagadh Highway, Dhoraji - 360410, Tal: Dhoraji, Dist: Rajkot",,,,none,False
+Rajkot,Bhakti Fuels,"Plot No: NA, Survey No: 56/ 2, N.H.No. 8B, Nr. Vachhraj Hotel, Bhutvad, Tal. Dhoraji, Dist. Rajkot, Dhoraji - 360410 Dist: Rajkot",22.3053263,70.8028377,name_locality_district,medium,True
+Rajkot,GGL Mahadev CNG,"Survey No. 12/1 P 1, Opp. Vachhraj Hotel, Nr. Bhutvad Village Patiya, Jetpur Road, Dhoraji, Tal. Dhoraji, Dist. Rajkot, Dhoraji - 360410 Dist: Rajkot",,,,none,False
+Rajkot,Santram Petroleum,"Gondal, Gondal Jamkandorna Road, Gondal - 360311 Dist: Rajkot",,,,none,False
+Rajkot,BPCL COCO,"NH27, Biliyada, Gondal - 360311 Dist: Rajkot",22.3302972,70.8772429,name_locality_district,medium,True
+Rajkot,Galaxy Petroleum,"Plot No: 3, Survey No: 58 / 3 Paikee, Bhojpara, Everest Honda Showroom, Bhojpara, Gondal - 360311 Dist: Rajkot",,,,none,False
+Rajkot,Vraj Petroleum,"Survey No: 9/1/P1/P2 Gondal Kunkavav Road, At Moviya, Gondal - 360330 Dist: Rajkot",22.3727248,70.7456167,pincode_district,low,True
+Rajkot,Shreeji Petroleum,"Plot No: 1, Survey No: 248 / 1 Paikee, Vasavad, Opp. Pgvcl Office Vasavad, Vasavad, Gondal - 364490 Dist: Rajkot",22.3727248,70.7456167,pincode_district,low,True
+Rajkot,Sahara Filling Station,"Plot No: 2, Survey No: 214/1, Moviya Road, Cement Industries, Gondal, Gondal - 360311 Dist: Rajkot",,,,none,False
+Rajkot,Jay Shreenathji Petroleum,"Gondal Sultanpur Road, At Lilakha, Tal. Gondal, Gondal - 360320 Dist: Rajkot",22.3053263,70.8028377,pincode_district,low,True
+Rajkot,Jay Babari Petroleum,"Survey No: 123P1, Virpur, Gomta Taluka Gondal, Gondal - 360320 Dist: Rajkot",22.3053263,70.8028377,pincode_district,low,True
+Rajkot,Radhe Petroleum,"Survey No: 144/P2, At DERDI (KUMBHAJI) Taluka Gondal, Gondal - 364465 Dist: Rajkot",,,,none,False
+Rajkot,GGL Jadeja & Sons Gas Station,"Survey No. 696/P1/P1, Opp. Khodiyar Hotel,NH-27 Ashapura cross road, Village Bhojpara, Gondal - 360311 Dist: Rajkot",,,,none,False
+Rajkot,Rahul Petroleum,"Survey No: 441/8 P2, NH No:27 Opp Swami Narayan Gurukul Highway,Nr Rahul TVS Gondal,, Gondal - 360311 Dist: Rajkot",,,,none,False
+Rajkot,Vaibhav Petroleum,"NH927D, Jashapar, Jamkandorana, Jamkhandorna - 360380 Dist: Rajkot",,,,none,False
+Rajkot,Ghanshyam Petroeum,"Atkot, Rajkot Bhavnagar Road, Jasdan - 360040 Dist: Rajkot",,,,none,False
+Rajkot,Shrinathji Petroleum,"Vinchhiya Road, Jasdan, Jasdan - 360050 Dist: Rajkot",,,,none,False
+Rajkot,Sojitra Petroleum,"Bypass Circle, Atkot Road, Aanand Nagar, Jasdan, Jasdan - 360050 Dist: Rajkot",22.2872789,70.8366513,name_locality_district,medium,True
+Rajkot,New Ekta Petroleum,"Hingolgadh Vinchhiya Road, Hingolgadh, Jasdan - 360050 Dist: Rajkot",,,,none,False
+Rajkot,Shree Danev Petroleum,"Plot No: 939, Survey No: 379P2, Sanathali-Vasavad Road At.Santhali, Atkot, Sanathali, Jasdan - 364490 Dist: Rajkot",22.3727248,70.7456167,pincode_district,low,True
+Rajkot,Satyasai Petroleum,"Survey No: 59P1, Gondal Chokadi, Virnagar Gondal Road, Virnagar, Taluka Jasdan,, Jasdan - 360060 Dist: Rajkot",22.3727248,70.7456167,pincode_district,low,True
+Rajkot,GGL Ajayraj CNG,"Survey No: 400P1, Virnagar, Rajkot Bhavnagar Highway,, Jasdan - 360040 Dist: Rajkot",,,,none,False
+Rajkot,Jalsagar Petroleum,"NH151, Jetpur Junagadh Highway, Jetalsar, Jetpur - 360360 Dist: Rajkot",,,,none,False
+Rajkot,Maruti Petroleum,"Jetpur - Junagadh Road, SH-3, Village Jetalsar, Jetpur - 360360 Dist: Rajkot",,,,none,False
+Rajkot,GGL Kishan Trade Company,"NH27, Village Virpur - Kagvad, Jetpur - 360370, Tal: Jetpur, Dist: Rajkot",22.3302972,70.8772429,name_locality_district,medium,True
+Rajkot,Shree Ram Auto,"Plot No: 8, Survey No: 8P1, Jetpur Bagasara Road, Parab Dham, Kharchiya, Jetpur - 360060, Tal: Jetpur, Dist: Rajkot",22.3727248,70.7456167,pincode_district,low,True
+Rajkot,P H Wadia & Sons,"Opp. S T Bus Stand, Tin Batti Chowk, Jetpur â€“ Junagadh Highway, Tal. Jetpur, Jetpur - 360370 Dist: Rajkot",,,,none,False
+Rajkot,GGL Nand CNG,"Plot No: 1, Survey No: 319/P-1/P-1, Hotel Ravi, Virpur,, Jetpur - 360380, Tal: Jetpur, Dist: Rajkot",,,,none,False
+Rajkot,GGL Raghuvir CNG Station,"Survey No. 832/1P 4/P1,Plot No.1, On NH-27, Dhareshwar Road, Opp. Reliance Pump , Village- Jetpur,, Jetpur - 360370, Tal: Jetpur, Dist: Rajkot",22.2890862,70.7761683,name_locality_district,medium,True
+Rajkot,GGL Somnath CNG Station,"Nr Saraswati Vidhyalay, Survay No 86 P 1, Navagadh, Rajkot-Porbandar NH, Tal. Jetpur, Dist. Rajkot, Jetpur - 360370 Dist: Rajkot",,,,none,False
+Rajkot,Maruti Petroleum,"NH27, Shapar, Gondal Road, Kotda Sangani - 360024, Tal: Kotdasangani, Dist: Rajkot",22.3302972,70.8772429,name_locality_district,medium,True
+Rajkot,GGL Avadh Infrastructure Pvt. Ltd.,"NH27, Sapar (Veraval), Kotda Sangani - 360024, Tal: Kotdasangani, Dist: Rajkot",22.3302972,70.8772429,name_locality_district,medium,True
+Rajkot,Gohilraj Petroleum,"Metoda, Kalawad Road, Lodhika - 360021 Dist: Rajkot",22.2383923,70.6786641,name_locality_district,medium,True
+Rajkot,Radhe Petroleum,"Lodhika, Lodhika - 360035 Dist: Rajkot",22.1985247,70.7092848,name_locality_district,medium,True
+Rajkot,Ambika Petroleum,"Vajdi, Metoda GIDC, Lodhika - 360005 Dist: Rajkot",22.2606753,70.7074584,name_locality_district,medium,True
+Rajkot,Raj Automobiles,"Survey No. 161/B, Nh27, Village Pardi Nr. Shapar Veraval Ind. Area, Lodhika - 360024 Dist: Rajkot",22.1747124,70.7965953,name_locality_district,medium,True
+Rajkot,Gujarat Gas (Paddhari),"Vanpari, Near Paddhari Toll Plaza, Paddhari - 360110 Dist: Rajkot",22.3950843,70.6069155,pincode_district,low,True
+Rajkot,Gujarat Gas (Greenland Crossing),"NH27, Near Greenland Crossing, Rajkot - 360003, Tal: Rajkot, Dist: Rajkot",22.3302972,70.8772429,name_locality_district,medium,True
+Rajkot,HPCL COCO (HP Auto Centre),"Nana Mauva Circle, 150 feet Ring Road, Rajkot - 360001, Tal: Rajkot, Dist: Rajkot",22.2932676,70.7928435,pincode_district,low,True
+Rajkot,National Petrochem,"Kuvadva Road, Rajkot - 360003, Tal: Rajkot, Dist: Rajkot",22.3141856,70.8353128,full_address,high,True
+Rajkot,Om Petroleum,"Near Ramapeer Crossing, 150 feet Ring Road, Rajkot - 360005, Tal: Rajkot, Dist: Rajkot",22.2813788,70.7610278,pincode_district,low,True
+Rajkot,Jay Somanath Petroleum,"Near Madhapar Crossing, Jamnagar Bypass, Rajkot - 360006, Tal: Rajkot, Dist: Rajkot",22.3238171,70.7683251,pincode_district,low,True
+Rajkot,Sardhar Juth Vikas Karyakari Sahkari Mandli,"Sardhar, Rajkot - 360025, Tal: Rajkot, Dist: Rajkot",,,,none,False
+Rajkot,Giriraj Petroleum,"Opp. Atmiya College, Kalawad Road, Rajkot - 360005, Tal: Rajkot, Dist: Rajkot",22.2857109,70.770989,name_locality_district,medium,True
+Rajkot,Bombay Garage,"Gondal Road, Rajkot - 360002, Tal: Rajkot, Dist: Rajkot",22.2716375,70.7992389,full_address,high,True
+Rajkot,Natraj Petroleum,"Near Sorthaliya Circle, Kotharia Road, Rajkot - 360002, Tal: Rajkot, Dist: Rajkot",22.2730137,70.799889,pincode_district,low,True
+Rajkot,Indian Highway Point,"Vajdi (Virda), Kalawad Road, Rajkot - 360005, Tal: Rajkot, Dist: Rajkot",22.2813788,70.7610278,pincode_district,low,True
+Rajkot,National Automobiles,"Dhebar Road, Near GSRTC Bus Depot, Rajkot - 360002, Tal: Rajkot, Dist: Rajkot",22.3018581,70.8029528,name_locality_district,medium,True
+Rajkot,Gujarat Gas (Ghanteshwar),"Ghanteshwar, Rajkot Jamnagar Road, Rajkot - 360006, Tal: Rajkot, Dist: Rajkot",22.3238171,70.7683251,pincode_district,low,True
+Rajkot,Shivam Jemin Petroleum,"Kalipat Village, SH-25, Rajkot Bhavnagar Road, Rajkot - 360020, Tal: Rajkot, Dist: Rajkot",22.3727248,70.7456167,pincode_district,low,True
+Rajkot,Mehta Brothers Petrol Pump,"Dehbar Road, Near GSRTC Bus Depot, Rajkot - 360360, Tal: Rajkot, Dist: Rajkot",,,,none,False
+Rajkot,RCT Police Welfare,"Jamnagar Road, Near Police Head Quarter, Rajkot - 360006, Tal: Rajkot, Dist: Rajkot",22.317397,70.7864731,name_locality_district,medium,True
+Rajkot,HPCL COCO RMC4,"Raiya Road, Bapa Sitaram chowk, Rajkot City, Rajkot - 360005, Tal: Rajkot, Dist: Rajkot",22.3048499,70.7301057,name_locality_district,medium,True
+Rajkot,Mavdi Fuels,"Mavdi â€“ Paal Road, Near Vagad Chowkdi, Mavdi, Rajkot City, Rajkot - 360004, Tal: Rajkot, Dist: Rajkot",22.2640549,70.7872243,pincode_district,low,True
+Rajkot,Jaynath Traders,"Nr. Thorala,Near Chunarawad Chowk, Rajkot Bhavnagar Road, Rajkot City, Rajkot - 360003, Tal: Rajkot, Dist: Rajkot",22.3286085,70.8153432,pincode_district,low,True
+Rajkot,J B & Associates,"At & Post Ronki, 150 Ring Road, Madhapar Crossing, Rajkot - 360003, Tal: Rajkot, Dist: Rajkot",22.3286085,70.8153432,pincode_district,low,True
+Rajkot,Kanabar Petroleum,"Survey No. 261, Rajkot-Morbi SH 24, Nr. New Marketting Yard, Village: Bedi,, Rajkot - 360003, Tal: Rajkot, Dist: Rajkot",22.3875463,70.7980607,name_locality_district,medium,True
+Rajkot,Sahaj Petroleum,"Survey No. 68, Paiki 1, Rajkot Morbi Rd, Near Marwadi College, Gauridad, Rajkot - 360003, Tal: Rajkot, Dist: Rajkot",22.3286085,70.8153432,pincode_district,low,True
+Rajkot,Prem Petroleum,"Survey No: 53/2/P1/P3/P1,A2-G18, Near Atithi Devo Bhava Hotel, Ronki, Rajkot, Tal. Rajkot,, Rajkot - 360006 Dist: Rajkot",22.3238171,70.7683251,pincode_district,low,True
+Rajkot,GGL Shivam Gas Agency,"Plot No. 126 & 127, Survey No. 281/P3, Village Kotharia, Kothariya-Kotda Sangani Road, Taluka Rajkot,, Rajkot - 360002 Dist: Rajkot",22.2730137,70.799889,pincode_district,low,True
+Rajkot,HPCL COCO RMC6,"Plot No: F.P. No. 94, T. P. Scheme No.12, Within 0.5 KM from Greenland Chowkdi,, Rajkot - 360003, Tal: Rajkot, Dist: Rajkot",22.3286085,70.8153432,pincode_district,low,True
+Rajkot,Bhagirath Petroleum,"NH27, Kuvadva, Rajkot - 360023, Tal: Rajkot, Dist: Rajkot",22.3302972,70.8772429,name_locality_district,medium,True
+Rajkot,GGL Trans Globe Fuels,"Survey No. 554, Village Kuvadva, NH-27, Tal. Rajkot, Rajkot - 360023 Dist: Rajkot",22.3727248,70.7456167,pincode_district,low,True
+Rajkot,Dhanlaxmi Petroclub,"Plot No: 3, Survey No: 285/1/1/1/1,2,3, Near Kothariya Gam, Telephone Exc., Rajkot - 360022, Tal: Rajkot, Dist: Rajkot",22.3727248,70.7456167,pincode_district,low,True
+Rajkot,Koteshwar Auto Centre,"Near Aji Dam, Rajkot Bhavnagar Road, Rajkot City, Rajkot - 360003, Tal: Rajkot, Dist: Rajkot",22.3286085,70.8153432,pincode_district,low,True
+Rajkot,Tripada Petroleum,"Plot No: 14/15, Survey No: 390, Gondal road, Mercedes Benz Rajkot,, Rajkot - 360004, Tal: Rajkot, Dist: Rajkot",22.2595059,70.800069,name_locality_district,medium,True
+Rajkot,Satadhar Petroleum,"D.S.No.42, R.S.NO 64 PAIKI 5, O.P. NO. 18/4, F.P.NO.18/4, 2nd Ring Road, Village: Munjaka, 2nd Ring Road, Vill. Munjka, Tal. & Dist. Rajkot, Rajkot - 360005 Dist: Rajkot",22.2813788,70.7610278,pincode_district,low,True
+Rajkot,Suryoday Petroleum,"Opp. Ganesh Oil Mill, Dhoraji â€“ Upleta Old NH, Upleta Bypass,, Upleta - 360440 Dist: Rajkot",22.3727248,70.7456167,pincode_district,low,True
+Rajkot,Aum Petroleum,"NH27, Rajkot Porbander Highway, Ganod Village, Upleta - 360490 Dist: Rajkot",22.3302972,70.8772429,name_locality_district,medium,True
+Rajkot,Suryadeep Petroleum,"Plot No: 1, Survey No: 110P2, Vinchhiya, Botad Road, Vinchiya - 360055 Dist: Rajkot",22.3727248,70.7456167,pincode_district,low,True
+Ahmedabad,Visat Automobile,"Near Visat Cross Roads, Chandkheda, Ahmedabad - 380005 Dist: Ahmedabad",23.0849269,72.5930311,pincode_district,low,True
+Ahmedabad,Sharada Petroleum Services,"SH-41, Nigam Nagar, Chandkheda, Ahmedabad - 382424 Dist: Ahmedabad",22.990501,72.3382495,name_locality_district,medium,True
+Ahmedabad,R K Petroleum,"NH47, Bagodara, Bavla - 382240, Tal: Bavla, Dist: Ahmedabad",23.0120747,72.7184557,name_locality_district,medium,True
+Ahmedabad,Dwarkadhis Petroleum,"Survey No. 219, Bagodara Nalsarovar Road, Meni,, Bavla - 382110, Tal: Bavla, Dist: Ahmedabad",22.987249,72.3358502,pincode_district,low,True
+Ahmedabad,Ramdevkurpa Petroleum,"Survey No. 19, Chiyada Sakodra Road, Chiyada, Tal. Bavla, Dist. Ahmedabad, Bavla - 382220 Dist: Ahmedabad",,,,none,False
+Ahmedabad,GGL Anthem Gas Station,"Survey No. 19, Tarapur-Bagodara Road, SH-8, Nr. Bagodara Chowkdi, Bagodara, Bavla - 382230, Tal: Bavla, Dist: Ahmedabad",,,,none,False
+Ahmedabad,N C Mestry Petroleum,"Survey No. 148/1, Rampura, Nr. Primary Health Centre, Detroj-Rampara - 382140 Dist: Ahmedabad",,,,none,False
+Ahmedabad,GGL Shiv Petrolium,"Survey No. 139, Plot No, 418, Dhandhuka Limbadi Highway, Nr, Shiv Constrntion Plant Site, Chharodiya,, Dhandhuka - 382170, Tal: Dhandhuka, Dist: Ahmedabad",23.0602892,72.3841934,name_locality_district,medium,True
+Ahmedabad,Gujarat Gas (Loliya),"Loliya (Fedra), Bagodara Bhavnagar Highway, Dholka - 382230, Tal: Dholka, Dist: Ahmedabad",,,,none,False
+Ahmedabad,Western India Engineering,"Near Pullen Circle, Dholka Bypass Road, Kheda - Bawla SH, Village Dholka, Dholka - 387810, Tal: Dholka, Dist: Ahmedabad",,,,none,False
+Ahmedabad,Parth Petroleum,"Survey No. 638, Vill. Sahij, Dholka Kheda Sh16,, Dholka - 382225, Tal: Dholka, Dist: Ahmedabad",,,,none,False
+Ahmedabad,Jalaram Petroleum,"Survey No. 65, Plot No. 1, Vataman Simej Road, Simej, Dholka - 382265, Tal: Dholka, Dist: Ahmedabad",,,,none,False
+Ahmedabad,Jalaram Petroleum,"Plot No. 1, Survey No. 301, Badarkha, Dholka Badarkha Road, Dholka - 382260, Tal: Dholka, Dist: Ahmedabad",22.8401248,72.4510962,name_locality_district,medium,True
+Ahmedabad,K R Petroleum,"Survey No. 254, Vautha To Palla Road, Nr. Palla Bridge, Vautha, Dholka - 382225, Tal: Dholka, Dist: Ahmedabad",,,,none,False
+Ahmedabad,Sarkar Kisan Seva Kendra,"Plot No. 1009, Survey No. 183, Koth,, Dholka - 382240, Tal: Dholka, Dist: Ahmedabad",,,,none,False
+Ahmedabad,Bhavani Petroleum,"Vill. Nesda, Dholka, Dholka - 382225, Tal: Dholka, Dist: Ahmedabad",,,,none,False
+Ahmedabad,Ambica Service Station,"Dholka, Dholka - 382225, Tal: Dholka, Dist: Ahmedabad",,,,none,False
+Ahmedabad,GGL Shiv Shakti CNG Pump,"Survey No. 186 ,Koth, Nr Ganpati Pura, Arnej, Dholka - 382240, Tal: Dholka, Dist: Ahmedabad",,,,none,False
+Ahmedabad,GGL Shrinivas Petroleum,"Survey No. 1104, Bagodara Vataman Highway, Arnej, Koth, Dholka - 382240, Tal: Dholka, Dist: Ahmedabad",,,,none,False
+Ahmedabad,Swaminarayan Motors,"Mandal, Mandal - 382130 Dist: Ahmedabad",,,,none,False
+Ahmedabad,Gujarat Gas (Sanand),"Chharodi, Ahmedabad Viramgam Road, Sanand - 382170, Tal: Sanand, Dist: Ahmedabad",23.1229694,72.5406354,name_locality_district,medium,True
+Ahmedabad,Jasbhai Patel & Co.,"Village Sanathal, Sanathal Circle, Sarkhej Bavla Highway, Sanand - 382210, Tal: Sanand, Dist: Ahmedabad",22.964449,72.4238016,pincode_district,low,True
+Ahmedabad,Bahuchar Petroleum,"Survey No. 140, Sanand Nalsarovar Road, Srinagar Chokdi, Vinchhiya, Sanand - 382110, Tal: Sanand, Dist: Ahmedabad",22.987249,72.3358502,pincode_district,low,True
+Ahmedabad,Jay Babari Petroleum,"Plot No. 46, Survey No. 779/1+2, Godhavi, Sanskardham School, Sanand - 382115, Tal: Sanand, Dist: Ahmedabad",23.0233196,72.4087089,name_locality_district,medium,True
+Ahmedabad,Dwarkesh Petroleum,"Survey No. 917/3, At. Bol, Sanand Bol Road, Sanand Gidc, Motipura, Tal. Sanand, Dist. Ahmedabad, Sanand - 382170 Dist: Ahmedabad",,,,none,False
+Ahmedabad,Jay Hari Petroleum,"Vill. Chekla, Sanand, Sanand - 382115, Tal: Sanand, Dist: Ahmedabad",23.0662991,72.6661822,pincode_district,low,True
+Ahmedabad,Shree Laxminarayan Automobiles,"Opp. ACC Cement Factory, Sarkhej-Bavla NH Highway 8A, Changodar, Sanand - 382210, Tal: Sanand, Dist: Ahmedabad",22.964449,72.4238016,pincode_district,low,True
+Ahmedabad,GGL Atreshwar CNG Station,"Survey No. 108, Bavla - Lodariyal, Nr. Madhusudan Company, Lodariyal, Sanand - 382220, Tal: Sanand, Dist: Ahmedabad",,,,none,False
+Ahmedabad,Govatsalya Petroleum,"Survey No. 71, At & Post Sachana, Viramgam - 382150, Tal: Viramgam, Dist: Ahmedabad",,,,none,False
+Ahmedabad,Bahucharkrupa Petroleum,"Khata No. 4152, Survey No. 343, Viramgam Bypass Road, Nr. Popat Chowkdi, Gatew,, Viramgam - 382150, Tal: Viramgam, Dist: Ahmedabad",,,,none,False
+Ahmedabad,Shri Swaminarayan Motor Store,"Vill. Sokli, Viramgam, Viramgam - 382150, Tal: Viramgam, Dist: Ahmedabad",,,,none,False
+Vadodara,K D Patel & sons,"Shinor Crossing, Dabhoi,, Dabhoi - 391110 Dist: Vadodara",,,,none,False
+Vadodara,Gujarat Gas (Kandari),"NH48, Kandari, Ahmedabad Mumbai Carraigeway, Karjan - 391210, Tal: Karjan, Dist: Vadodara",22.4291885,73.1135917,name_locality_district,medium,True
+Vadodara,Gujarat Gas (Valan Palej),"NH48, Valan, Mumbai Ahmedabad Carriageway, Karjan - 392220, Tal: Karjan, Dist: Vadodara",22.4291885,73.1135917,name_locality_district,medium,True
+Vadodara,Gujarat Gas (Bhaniyara),"Bhaniyara, Vadodara Halol Road, Waghodia - 390022 Dist: Vadodara",22.3322836,73.220693,pincode_district,low,True
+Vadodara,J R Petroleum,"Opp. Vallabh Zin, Waghodia, Waghodia - 391760 Dist: Vadodara",22.3043328,73.4016768,name_locality_district,medium,True
