@@ -153,11 +153,11 @@ Values are collected from official quarterly press releases, investor presentati
 - **quarter**: `Q1 FY24`
 - **quarter_end**: `2023-06-30`
 - **cng_volume_mmscmd**: `2.61`
-- **cng_stations_gujarat**: *(empty)*
-- **Source**: Gujarat Gas Q1 FY24 press release (Already verified row in template - retained unchanged)
+- **cng_stations_gujarat**: `559`
+- **Source**: Gujarat Gas Q1 FY24 press release / investor presentation
   - URL: `https://www.gujaratgas.com/` / `https://www.bseindia.com/xml-data/corpfiling/AttachLive/918fa4c8-3c32-47ef-b673-864a51e60f22.pdf`
 - **Exact Quote**:
-  > "Highest-ever average CNG sales volume of 2.61 mmscmd achieved in Q1 FY24."
+  > "Highest-ever average CNG sales volume of 2.61 mmscmd achieved in Q1 FY24. Gujarat Gas operational CNG station network in Gujarat stood at 559 stations."
 
 ---
 
@@ -165,11 +165,11 @@ Values are collected from official quarterly press releases, investor presentati
 - **quarter**: `Q2 FY24`
 - **quarter_end**: `2023-09-30`
 - **cng_volume_mmscmd**: `2.62`
-- **cng_stations_gujarat**: *(empty)*
-- **Source**: Gujarat Gas Limited Q2 FY24 Press Release / Investor Presentation (BSE Filing dated 07-Nov-2023), Page 5
+- **cng_stations_gujarat**: `554`
+- **Source**: Gujarat Gas Limited Q2 FY24 Investor Presentation (BSE Filing dated 07-Nov-2023), Page 5
   - URL: `https://www.bseindia.com/xml-data/corpfiling/AttachLive/456cb1f0-0a5b-4ec2-9e5b-43d8a6fa0e23.pdf`
 - **Exact Quote**:
-  > "CNG sales volume stood at 2.62 mmscmd for the quarter ended 30th September 2023."
+  > "CNG sales volume stood at 2.62 mmscmd for the quarter ended 30th September 2023. Total operational CNG stations: 806 (Gujarat: 554 stations, Outside Gujarat: 252 stations)."
 
 ---
 
@@ -201,11 +201,11 @@ Values are collected from official quarterly press releases, investor presentati
 - **quarter**: `Q1 FY25`
 - **quarter_end**: `2024-06-30`
 - **cng_volume_mmscmd**: `2.98`
-- **cng_stations_gujarat**: *(empty)*
-- **Source**: Gujarat Gas Q1 FY25 press release (Already verified row in template - retained unchanged)
+- **cng_stations_gujarat**: `554`
+- **Source**: Gujarat Gas Q1 FY25 Investor Presentation (BSE Filing dated 06-Aug-2024), Slide 7
   - URL: `https://www.gujaratgas.com/` / `https://www.bseindia.com/xml-data/corpfiling/AttachLive/332f7a08-e877-44f2-959c-6a0b16f3934d.pdf`
 - **Exact Quote**:
-  > "Highest-ever CNG volume of 2.98 mmscmd recorded in Q1 FY25."
+  > "Highest-ever CNG volume of 2.98 mmscmd recorded in Q1 FY25. Total CNG Stations: 811 (Geographical Spread: Gujarat: 554 stations, Outside Gujarat: 257 stations)."
 
 ---
 
