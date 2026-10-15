@@ -22,12 +22,16 @@ All four core empirical datasets—OSM station locations, quarterly network volu
 | File Path | Description | Records / Rows | Date Coverage | Source / Authority |
 |---|---|:---:|:---:|---|
 | [`data/raw/osm_cng_stations_gujarat.csv`](file:///f:/SSA_hack/cng-demand-planner/data/raw/osm_cng_stations_gujarat.csv) | CNG fueling stations in Gujarat | 64 stations | Snapshot 2026-10-14 | OpenStreetMap via Overpass API |
+| [`data/raw/station_addresses_ahmedabad.csv`](file:///f:/SSA_hack/cng-demand-planner/data/raw/station_addresses_ahmedabad.csv) | Gujarat Gas operational CNG stations (Ahmedabad) | 31 stations | Active Directory 2026 | Gujarat Gas official station directory (`gujaratgas.com`) |
+| [`data/raw/station_addresses_surat.csv`](file:///f:/SSA_hack/cng-demand-planner/data/raw/station_addresses_surat.csv) | Gujarat Gas operational CNG stations (Surat) | 78 stations | Active Directory 2026 | Gujarat Gas official station directory (`gujaratgas.com`) |
+| [`data/raw/station_addresses_vadodara.csv`](file:///f:/SSA_hack/cng-demand-planner/data/raw/station_addresses_vadodara.csv) | Gujarat Gas operational CNG stations (Vadodara) | 5 stations | Active Directory 2026 | Gujarat Gas official station directory (`gujaratgas.com`) |
+| [`data/raw/cng_stations_by_ga.csv`](file:///f:/SSA_hack/cng-demand-planner/data/raw/cng_stations_by_ga.csv) | Official Geographical Area (GA)-wise station counts | 37 rows | 2019-03-31, 2022-10-31, 2024-05-31 | PNGRB Progress Reports & Parliamentary Q&A (Sansad) |
 | [`data/raw/ggcl_cng_volumes.csv`](file:///f:/SSA_hack/cng-demand-planner/data/raw/ggcl_cng_volumes.csv) | GGCL network-level quarterly CNG sales volume | 26 quarters | Q1 FY21 to Q2 FY27 | GGCL investor presentations & BSE filings (Scrip: 539336) |
-| [`data/raw/ggcl_volume_evidence.md`](file:///f:/SSA_hack/cng-demand-planner/data/raw/ggcl_volume_evidence.md) | Exact quotations & filing URLs for volumes | 26 sections | FY21 to FY27 | Official BSE/NSE company disclosures |
+| [`data/raw/ggcl_volume_evidence.md`](file:///f:/SSA_hack/cng-demand-planner/data/raw/ggcl_volume_evidence.md) | Exact quotations & filing URLs for volumes & stations | 26 sections | FY21 to FY27 | Official BSE/NSE company disclosures |
 | [`data/raw/prices.csv`](file:///f:/SSA_hack/cng-demand-planner/data/raw/prices.csv) | CNG and Petrol price change events (Ahmedabad) | 38 events | 2019-01-01 to 2026-08-16 | PPAC (MoPNG), Gujarat Gas tariff notices, IOCL archives |
 | [`data/raw/vahan/reportTable_2019.xlsx`](file:///f:/SSA_hack/cng-demand-planner/data/raw/vahan/reportTable_2019.xlsx) to `reportTable_2026.xlsx` | 8 raw annual VAHAN exports for Gujarat | 8 workbooks (16–23 rows each) | Jan 2019 to Oct 2026 | MoRTH VAHAN 4 Dashboard |
-| [`data/processed/vahan_cng_tidy.csv`](file:///f:/SSA_hack/cng-demand-planner/data/processed/vahan_cng_tidy.csv) | Cleaned, melted monthly CNG vehicle registrations | 458 monthly rows | 2019-01-01 to 2026-10-01 | Derived from VAHAN exports by `clean_vahan.py` |
-| [`data/DATA_SOURCES.md`](file:///f:/SSA_hack/cng-demand-planner/data/DATA_SOURCES.md) | Canonical documentation of sources & terms | 4 datasets | Ongoing | Open Data / Regulatory Disclosures |
+| [`data/processed/vahan_cng_tidy.csv`](file:///f:/SSA_hack/cng-demand-planner/data/processed/vahan_cng_tidy.csv) | Cleaned, melted monthly CNG vehicle registrations | 453 monthly rows | 2019-01-01 to 2026-09-01 | Derived from VAHAN exports (Oct 2026 partial month pruned) |
+| [`data/DATA_SOURCES.md`](file:///f:/SSA_hack/cng-demand-planner/data/DATA_SOURCES.md) | Canonical documentation of sources & terms | 6 datasets | Ongoing | Open Data / Regulatory Disclosures |
 
 ---
 
@@ -98,8 +102,8 @@ All four core empirical datasets—OSM station locations, quarterly network volu
 | Variable | Missing Segment | Reason for Absence | Where It Exists / When Expected | Handling in Pipeline |
 |---|---|---|---|---|
 | `cng_volume_mmscmd` | **Q2 FY27** | Period just ended (September 30, 2026); Board Meeting scheduled for November 5, 2026. | Gujarat Gas Limited Q2 FY27 Earnings Release (BSE/NSE). | Kept as blank cell (`NaN`). Downstream forecasting must treat this as target holdout or predict it. |
-| `cng_stations` | **Quarters outside FY24** | GGCL only began disclosing exact operational CNG station counts in quarterly presentations from Q3 FY24 onwards (562 stations) and in annual integrated reports. | Gujarat Gas Annual Reports (FY21, FY22, FY23, FY24, FY25). | Blank cells in `ggcl_cng_volumes.csv` for unstated quarters. |
-| VAHAN Registrations | **Nov & Dec 2026** | Current date is October 2026; future dates have not elapsed. | MoRTH VAHAN Dashboard (available after Nov/Dec close). | Range naturally ends at `2026-10-01`. |
+| `cng_stations` | **Unstated Quarters** | GGCL began disclosing exact Gujarat operational station counts in specific quarterly presentations (e.g. Q4 FY21: 559, Q4 FY22: 561, Q1 FY24: 559, Q2 FY24: 554, Q3 FY24: 562, Q4 FY24: 565, Q1 FY25: 554). Later quarters (FY26–FY27) only state total company-wide network (839–844 stations across India) without isolated Gujarat breakdown. | Gujarat Gas Annual Reports & Investor Presentations. | Blank cells in `ggcl_cng_volumes.csv` for quarters lacking explicit Gujarat-specific station disclosure. |
+| VAHAN Registrations | **Oct, Nov & Dec 2026** | Partial month of October 2026 was removed; Nov/Dec future dates have not elapsed. | MoRTH VAHAN Dashboard. | Dataset strictly covers full completed calendar months from `2019-01-01` to `2026-09-01`. |
 | Station-Level Daily Sales | **All stations** | Proprietary commercial data; not published by GGCL or PNGRB. | Internal GGCL SAP / SCADA systems. | Cannot be collected from public web. Downstream models must estimate via spatial and vehicle-stock allocation. |
 
 ---
@@ -118,6 +122,10 @@ All four core empirical datasets—OSM station locations, quarterly network volu
    - Post-2023, ethanol mandates introduced `PETROL(E20)/CNG`, `PETROL(E20)/HYBRID/CNG`, and `PETROL/HYBRID/CNG`. All 6 CNG-capable categories are retained in the tidy dataset.
 4. **Corporate Restructuring**:
    - In August–September 2024, the Gujarat Government announced the merger of Gujarat State Petroleum Corporation (GSPC), GSPC Energy, and Gujarat Gas Limited into **Gujarat Energy Limited**. Regulatory filings remain filed under BSE Scrip `539336`.
+5. **CGD Administrative Boundaries (Ahmedabad, Surat, Vadodara)**:
+   - **Ahmedabad**: Ahmedabad City and Daskroi GA was awarded to Adani Total Gas Limited (ATGL), whereas Gujarat Gas operates in Ahmedabad District / Rural (31 operational stations).
+   - **Surat**: Surat, Bharuch, and Ankleshwar GA is Gujarat Gas's flagship territory (78 operational stations in Surat district).
+   - **Vadodara**: Vadodara City GA is operated by Vadodara Gas Limited (VGL - JV of GAIL Gas & VMSS), while Gujarat Gas operates 5 stations in rural/transit highways of Vadodara district (Karjan, Dabhoi, Waghodia).
 
 ---
 
@@ -131,11 +139,62 @@ Before training downstream demand forecasting models, the team should execute th
 
 ---
 
-## 7. Git Commit Log
+## 7. Step 1 Follow-Up & Refinements (October 15, 2026)
 
-The following 5 atomic commits capture all changes locally on branch `main`:
+### 1. VAHAN Partial Month Removal
+- **File Modified**: [`data/processed/vahan_cng_tidy.csv`](file:///f:/SSA_hack/cng-demand-planner/data/processed/vahan_cng_tidy.csv)
+- **Changes**: Removed all 5 records with period `2026-10-01` (`CNG ONLY`: 4132, `PETROL(E20)/CNG`: 5336, `PETROL/CNG`: 804, hybrids: 0).
+- **Result**: Row count pruned from 458 to 453. Data now represents exactly 93 completed calendar months (`2019-01-01` through `2026-09-01`).
+- **Documentation**: Updated [`data/DATA_SOURCES.md`](file:///f:/SSA_hack/cng-demand-planner/data/DATA_SOURCES.md).
+
+### 2. VAHAN RTO Automation Assessment & Manual Download Instructions
+- **Automation Status**: Direct headless scraping was blocked due to PrimeFaces JSF dynamic ViewState handling, bot detection headers, and browser popup blocking on `.gov.in` download requests.
+- **Data Quality Observation**: The default table on VAHAN when selecting Y-Axis = `Rto` without opening the filter drawer displays **all fuel types** (~17,651 monthly registrations in Surat in Jan 2019). To extract true CNG registrations, the filter drawer must be opened.
+- **Manual Download Instructions for the Team**:
+  1. Open `https://vahan.parivahan.gov.in/vahan4dashboard/vahan/vahan/view/reportview.xhtml`.
+  2. Select **State**: `Gujarat(38)`.
+  3. Set **Y-Axis**: `Rto`, **X-Axis**: `Month Wise`, **Year Type**: `Calendar Year`.
+  4. Click the vertical red tab on the far left edge: **"Click Here to Filter"**.
+  5. Under **Fuel**, select **`CNG ONLY`** (and separately **`PETROL/CNG`** if multi-select is not supported).
+  6. Click **Refresh**.
+  7. Allow pop-ups/downloads for `vahan.parivahan.gov.in` in your browser settings (URL bar lock icon -> Site settings -> Pop-ups -> Allow).
+  8. Click the green Excel/CSV icon above the table to download each calendar year (`2019` to `2026`). Save into `data/raw/vahan/`.
+
+### 3. Geographical-Area-Wise CNG Stations (`cng_stations_by_ga.csv`)
+- **File Created**: [`data/raw/cng_stations_by_ga.csv`](file:///f:/SSA_hack/cng-demand-planner/data/raw/cng_stations_by_ga.csv)
+- **Columns**: `date, geographical_area, district, cng_stations, source_url, page`
+- **Official Milestones Captured**:
+  - **31.03.2019**: PNGRB CGD Progress Report (Surat/Bharuch: 118, Ahmedabad City: 72, Vadodara City: 32, Rajkot: 48, etc.).
+  - **31.10.2022**: MoPNG Parliamentary Reply (Lok Sabha / Rajya Sabha AU629 Annexure-I) across 23 authorized GAs.
+  - **31.05.2024**: MoPNG Parliamentary Reply (Rajya Sabha AU2521 Annexure-I) reporting 1,108 cumulative operational CNG stations across Gujarat.
+- **Rule 1 Compliance**: No missing areas were interpolated or estimated.
+
+### 4. Gujarat Gas Quarterly Station Disclosures
+- **Files Modified**: [`data/raw/ggcl_cng_volumes.csv`](file:///f:/SSA_hack/cng-demand-planner/data/raw/ggcl_cng_volumes.csv) & [`data/raw/ggcl_volume_evidence.md`](file:///f:/SSA_hack/cng-demand-planner/data/raw/ggcl_volume_evidence.md)
+- **Filled Quarters**:
+  - `Q1 FY24 (2023-06-30)`: **559** stations in Gujarat.
+  - `Q2 FY24 (2023-09-30)`: **554** stations in Gujarat (out of 806 total network).
+  - `Q1 FY25 (2024-06-30)`: **554** stations in Gujarat (out of 811 total network).
+- **Exact Quotes**: Cited in `ggcl_volume_evidence.md` with BSE filing links.
+
+### 5. Station Address Directories (Ahmedabad, Surat, Vadodara)
+- **Files Created**:
+  - [`data/raw/station_addresses_ahmedabad.csv`](file:///f:/SSA_hack/cng-demand-planner/data/raw/station_addresses_ahmedabad.csv): **31 stations**
+  - [`data/raw/station_addresses_surat.csv`](file:///f:/SSA_hack/cng-demand-planner/data/raw/station_addresses_surat.csv): **78 stations**
+  - [`data/raw/station_addresses_vadodara.csv`](file:///f:/SSA_hack/cng-demand-planner/data/raw/station_addresses_vadodara.csv): **5 stations**
+- **Source**: Gujarat Gas Official Directory (`https://www.gujaratgas.com/cng/cng-stations/`).
+- **Terms Verified**: Public informational directory permitted under general corporate terms and disclaimer (`https://www.gujaratgas.com/disclaimer/`).
+- **Fields Stored**: `station_name, address, district, pincode, station_type, source_url`. No geocoding performed.
+
+---
+
+## 8. Git Commit Log
 
 ```text
+d5f20e5 Step 1 Follow-up: Add official GA-wise station counts and Gujarat Gas city station address directories
+754a638 Step 1 Follow-up: Fill cng_stations_gujarat for stated quarters and cite filing evidence
+4fb011c Step 1 Follow-up: Remove partial October 2026 month from VAHAN tidy dataset and document in DATA_SOURCES.md
+773de52 Add Step 1 Data Collection Report summarizing datasets, spot checks, and verification checklist
 787a233 Task 4: Clean and combine VAHAN Gujarat CNG vehicle registrations 2019-2026 into tidy table
 64a93ad Task 5: Update DATA_SOURCES.md with pull dates, URLs, licences, and OSM coverage %
 dc03493 Task 3: Populate historical fuel prices (CNG and petrol) for Ahmedabad reference city from 2019 to 2026
