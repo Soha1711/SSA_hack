@@ -41,16 +41,24 @@ streamlit run app/streamlit_app.py
   - *Urban catchments* (under assumed radius $R = 2.0$ km): overlap falls below 30% at $\sim 1.37 - 1.51 \times R$ (2.7 – 3.0 km straight / 3.5 – 3.9 km road), below 20% at $\sim 1.53 - 1.55 \times R$ (3.1 km straight / 4.0 km road), and below 10% at $\sim 1.59 - 1.67 \times R$ (3.2 – 3.3 km straight / 4.1 – 4.3 km road; 90% bootstrap CI: 3.1 – 4.0 km straight).
   - *Corridor catchments* (under assumed radius $R = 6.0$ km): overlap falls below 30% at $\sim 1.52 - 1.73 \times R$ (9.1 – 10.4 km straight / 11.7 – 13.3 km road), below 20% at $\sim 1.78 - 1.81 \times R$ (10.7 – 10.9 km straight / 13.6 – 13.9 km road), and below 10% at $\sim 1.84 - 1.86 \times R$ (11.0 – 11.1 km straight / 14.1 – 14.3 km road; 90% bootstrap CI: 9.9 – 11.5 km straight).
 - **Site-Ranking (Module D Part 1)**:
+  - *Data Caveat*: Candidate sites are **illustrative** because only a subset of stations has reliable coordinates (44 unique high/medium confidence stations out of 136 geocoded records). The remaining 92 stations have approximate coordinates or pincode centroids, which are treated conservatively as exclusion zones ($d_{\min} + 1.5$ km) to avoid recommending sites adjacent to operating stations.
+  - Search box strictly bounded to municipal urban limits (SMC & RUDA), eliminating coastal marshes and dasymetric anomalies in industrial zones.
+  - Enforced land check: population density $\ge 1,000$ pop/km² in cell and in $\ge 5$ of 8 neighboring cells.
   - Enforced 20% overlap minimum spacing constraint from `spacing_summary.csv` (Surat: 3.11 km, Rajkot: 3.07 km).
-  - Evaluated on regular 500 m grid inside built-up areas ($\ge 1000$ pop/km² [ASSUMPTION]). Relative priority scores based on unserved population share minus overlap penalty.
-  - Top candidate sites identified in unserved high-density growth zones (Surat: Southwest industrial/port corridor, >680k unserved pop; Rajkot: Western/Southwestern perimeter, >76k unserved pop).
-  - Leave-out validation (20% station removal): Rajkot recovered 66.7% of removed station areas in top 10; Surat recovered 0.0% because the massive southwest unserved whitespace dominates top scores citywide.
+  - Top candidate sites identified in unserved urban corridors (Surat: South/Southwest urban fringe [Bhatha/Pal/Vesu], ~418k–483k unserved pop, implied densities 33,000–38,400 pop/km²; Rajkot: Western radial corridor, ~16k–44k unserved pop, implied densities 1,270–3,530 pop/km²).
+  - Leave-out validation (5 seeds, 20% station removal): Mean recovery is 0.0% in both cities because conservative $4.6$ km exclusion buffers around remaining approximate/pincode stations blanket the core, directing new candidate cells to peripheral expansion corridors.
 - **EV Scenario S-Curves & Robust Sites (Module D Part 2)**:
-  - S-curves for 3W, 4W, and Bus segments based on NITI Aayog (2021) 2030 targets and Gujarat EV Policy (2021).
-  - Projected 2030 network demand: Low EV = 3.733 mmscmd (-15.1% vs 4% CAGR counterfactual); Medium EV = 3.098 mmscmd (-29.6%); High EV = 2.319 mmscmd (-47.3%).
-  - Urban Density Fleet Resilience Rule identifies robust candidate sites maintaining Top 10 status across all EV scenarios (Surat: 10 sites robust overall, 6 from Base top 10; Rajkot: 5 sites robust overall, consolidating around core commercial density).
+  - Normalization: Multipliers divided by 2026 value, ensuring all scenarios start identically at the observed Q1 FY27 actual volume (3.760 mmscmd).
+  - S-curves for 3W, 4W, and Bus segments based on NITI Aayog (2021) p. 12 targets: quoted verbatim as *sales-share targets* (80% 3W, 70% commercial cabs, 40% buses, 30% private cars by 2030) and converted to on-road fleet share ceilings using stock turnover assumptions (`ASSUMPTION`: 8-yr 3W life = 55% ceiling, 10-yr 4W life = 25% ceiling, 12-yr bus life = 28% ceiling).
+  - Projected 2030 network demand (Counterfactual ICE @ 4% CAGR = 4.399 mmscmd):
+    * Low EV: Multiplier = 0.9199 $\rightarrow$ 4.046 mmscmd (-8.0% vs counterfactual, +7.6% vs 2026 base).
+    * Medium EV (Baseline): Multiplier = 0.8305 $\rightarrow$ 3.653 mmscmd (-16.9% vs counterfactual, -2.8% vs 2026 base).
+    * High EV: Multiplier = 0.6961 $\rightarrow$ 3.062 mmscmd (-30.4% vs counterfactual, -18.6% vs 2026 base).
+  - Urban Density Fleet Resilience Rule evaluates candidate sites that "keep top-10 rank under the assumed density rule" (Surat: 4 sites robust; Rajkot: 8 sites robust, with ranks #1–#5 rock-solid).
+  - Both base ranks (without density bonus) and scenario ranks are reported side-by-side for transparent comparison.
 
 ## Limitations and next steps
+- Candidate sites are **illustrative** because only a subset of stations has reliable coordinates (44/136); 92 approximate/pincode stations were used for conservative exclusion buffers ($d_{\min} + 1.5$ km) but lack retail parcel precision.
 - Road-network isolines could not be built because Overpass failed under rate limits and network timeouts; catchments are circular metric buffers (UTM Zone 43N).
 - The 1.28 circuity factor (cited from Ballou et al. 2002 range of 1.2–1.4 for logistics and urban networks) and 25 km/h speed are ASSUMPTIONS, not local road measurements.
 - Station-level sales are estimated, not observed; the pipeline accepts a GGCL CSV in the same format.
@@ -59,4 +67,4 @@ streamlit run app/streamlit_app.py
 - Next: pilot on GGCL data, hourly queue model, network-wide rollout.
 
 ## Attribution
-Map data (c) OpenStreetMap contributors, ODbL.
+Map data (c) OpenStreetMap contributors, ODbL. Population raster from WorldPop (2020 UN-adjusted 1km).

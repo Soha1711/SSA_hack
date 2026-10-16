@@ -16,29 +16,42 @@
   - Circuity factor of 1.28 (cited from Ballou et al. 2002 range of 1.2–1.4 for logistics and urban networks) and 25 km/h speed are ASSUMPTIONS, not local road measurements.
   - Spacing thresholds reflect buffer-based geographic demand co-exposure (WorldPop 2020 UN-adjusted population raster), NOT an observed sales drop or measured cannibalisation.
   - Geocoding filtered strictly to 44 high/medium confidence stations with unique coordinates (Surat: 23, Rajkot: 14, Ahmedabad: 6, Vadodara: 1; all pincode centroids and shared-coordinate clusters dropped).
-- **Top 5 Candidate Siting Opportunities** (20% overlap spacing constraint from `spacing_summary.csv` [Surat: 3.11 km, Rajkot: 3.07 km]; relative priority scores, NOT demand forecasts):
-  - **Surat**:
-    1. `Site S-01` (21.1680°N, 72.6675°E): Unserved Pop = 689,307 | Nearest Stn = 3.65 km | Overlap = 0.0% | Score = 100.00 [ROBUST]
-    2. `Site S-02` (21.1680°N, 72.6627°E): Unserved Pop = 670,511 | Nearest Stn = 4.11 km | Overlap = 0.0% | Score = 97.27 [ROBUST]
-    3. `Site S-03` (21.1725°N, 72.6626°E): Unserved Pop = 651,641 | Nearest Stn = 3.95 km | Overlap = 0.0% | Score = 94.54 [ROBUST]
-    4. `Site S-04` (21.1634°N, 72.6627°E): Unserved Pop = 623,676 | Nearest Stn = 4.32 km | Overlap = 0.0% | Score = 90.48
-    5. `Site S-05` (21.1735°N, 72.7348°E): Unserved Pop = 600,412 | Nearest Stn = 3.82 km | Overlap = 0.0% | Score = 87.10 [ROBUST]
-  - **Rajkot**:
-    1. `Site R-01` (22.2533°N, 70.7650°E): Unserved Pop = 76,167 | Nearest Stn = 3.65 km | Overlap = 0.0% | Score = 85.68
-    2. `Site R-02` (22.2532°N, 70.7601°E): Unserved Pop = 59,763 | Nearest Stn = 3.78 km | Overlap = 0.0% | Score = 78.46
-    3. `Site R-03` (22.2575°N, 70.7503°E): Unserved Pop = 56,842 | Nearest Stn = 3.79 km | Overlap = 0.0% | Score = 74.63
-    4. `Site R-04` (22.2577°N, 70.7600°E): Unserved Pop = 71,607 | Nearest Stn = 3.31 km | Overlap = 16.9% | Score = 69.74
-    5. `Site R-05` (22.2228°N, 70.8046°E): Unserved Pop = 49,623 | Nearest Stn = 4.10 km | Overlap = 0.0% | Score = 65.15
-- **EV Scenario Effect on 2030 Demand** (Base 2026 volume = 3.760 mmscmd [SOURCED: Q1 FY27 actual]; Counterfactual ICE @ 4% CAGR = 4.399 mmscmd [ASSUMPTION]):
-  - **Low EV Adoption**: Multiplier = 0.8488 (EV fleet share 15.12%) -> Projected Demand = 3.733 mmscmd (**-15.1%** vs counterfactual, -0.7% vs 2026 base)
-  - **Medium EV Adoption (Baseline)**: Multiplier = 0.7044 (EV fleet share 29.56%) -> Projected Demand = 3.098 mmscmd (**-29.6%** vs counterfactual, -17.6% vs 2026 base)
-  - **High EV Adoption**: Multiplier = 0.5272 (EV fleet share 47.28%) -> Projected Demand = 2.319 mmscmd (**-47.3%** vs counterfactual, -38.3% vs 2026 base)
-- **Sanity Validation (20% Station Leave-Out Test)**:
-  - **Rajkot**: 2/3 (66.7%) removed station areas recovered in top 10 candidates (National Automobiles recovered within 0.24 km, RCT Police Welfare within 0.79 km).
-  - **Surat**: 0/5 (0.0%) removed station areas recovered in top 10 candidates. Reason: Surat has a massive southwest whitespace (>680,000 unserved population in the Hazira/Magdalla industrial-urban corridor) whose raw scores dominate the city-wide top 10 regardless of 20% central removals.
-- **Robust Siting Portfolio** (Sites remaining in Top 10 across Base, Low, Medium, and High EV under the Urban Density Fleet Resilience Rule):
-  - **Surat**: 10 sites robust overall; 6 of the Base Top 10 (#1, #2, #3, #5, #8, #10) maintain Top 10 status across all EV scenarios due to high localized population density (>50,000 persons/km²).
-  - **Rajkot**: 5 sites robust overall; Base #9 (22.2179°N, 70.7902°E) plus 4 central core candidates maintain Top 10 status due to dense commercial fleet activity as peripheral demand erodes.
+- **Candidate Siting Opportunities (Module D Part 1)**:
+  - *Data Caveat*: Candidate sites are **illustrative** because only a subset of stations has reliable coordinates (44 unique high/medium confidence stations out of 136 geocoded records). The remaining 92 stations have approximate coordinates or pincode centroids, which are treated conservatively as exclusion zones ($d_{\min} + 1.5$ km) to avoid recommending sites right next to existing stations, but whose true retail locations are uncertain.
+  - Enforced 20% overlap minimum spacing constraint from `spacing_summary.csv` (Surat: 3.11 km, Rajkot: 3.07 km).
+  - Search box strictly bounded to municipal urban limits (SMC: 72.74–72.93°E, 21.08–21.28°N; RUDA: 70.65–70.90°E, 22.15–22.42°N), eliminating coastal marshlands and Hazira heavy-industrial dasymetric anomalies.
+  - Land check enforced: raster density $\ge 1,000$ pop/km² in the candidate cell AND in $\ge 5$ of its 8 neighboring cells.
+  - Scores are relative priority scores based on unserved population share minus overlap penalty, NOT sales forecasts.
+  - **Surat Top 5 Candidates**:
+    1. `Site S-01` (21.1433°N, 72.7439°E): Unserved Pop = 482,673 | Nearest Stn = 6.33 km | Implied Density = 38,410 pop/km² | Score = 100.00 [drops out of top-10 under assumed density rule; Rank #11 under High EV]
+    2. `Site S-02` (21.1478°N, 72.7438°E): Unserved Pop = 466,656 | Nearest Stn = 6.00 km | Implied Density = 37,135 pop/km² | Score = 96.68 [drops out of top-10 under assumed density rule; Rank #12 under High EV]
+    3. `Site S-03` (21.1703°N, 72.7386°E): Unserved Pop = 466,443 | Nearest Stn = 4.31 km | Implied Density = 37,118 pop/km² | Score = 96.64 [keeps top-10 rank under the assumed density rule; Rank #6 under High EV]
+    4. `Site S-04` (21.1477°N, 72.7390°E): Unserved Pop = 465,241 | Nearest Stn = 5.63 km | Implied Density = 37,023 pop/km² | Score = 96.39 [drops out of top-10 under assumed density rule; Rank #13 under High EV]
+    5. `Site S-05` (21.1432°N, 72.7390°E): Unserved Pop = 440,359 | Nearest Stn = 5.98 km | Implied Density = 35,043 pop/km² | Score = 91.23 [drops out of top-10 under assumed density rule; Rank #14 under High EV]
+    *(Note: Site S-06 [21.1613°N, 72.7388°E, Score 90.86, Implied Density 34,898 pop/km²] keeps top-10 rank under the assumed density rule and jumps from #6 to #2 under High EV due to high local density: 36,745 pop/km²).*
+  - **Rajkot Top 5 Candidates**:
+    1. `Site R-01` (22.2171°N, 70.8029°E): Unserved Pop = 44,396 | Nearest Stn = 4.71 km | Implied Density = 3,533 pop/km² | Score = 100.00 [keeps top-10 rank under the assumed density rule; Rank #1 under High EV]
+    2. `Site R-02` (22.2170°N, 70.7980°E): Unserved Pop = 42,635 | Nearest Stn = 4.70 km | Implied Density = 3,393 pop/km² | Score = 96.03 [keeps top-10 rank under the assumed density rule; Rank #2 under High EV]
+    3. `Site R-03` (22.2173°N, 70.8077°E): Unserved Pop = 37,748 | Nearest Stn = 4.75 km | Implied Density = 3,004 pop/km² | Score = 85.02 [keeps top-10 rank under the assumed density rule; Rank #3 under High EV]
+    4. `Site R-04` (22.2169°N, 70.7932°E): Unserved Pop = 35,495 | Nearest Stn = 4.69 km | Implied Density = 2,825 pop/km² | Score = 79.95 [keeps top-10 rank under the assumed density rule; Rank #4 under High EV]
+    5. `Site R-05` (22.2168°N, 70.7883°E): Unserved Pop = 33,707 | Nearest Stn = 4.74 km | Implied Density = 2,682 pop/km² | Score = 75.92 [keeps top-10 rank under the assumed density rule; Rank #5 under High EV]
+- **EV Scenario Effect on 2030 Demand (Module D Part 2)**:
+  - *Normalization Rule*: Every scenario multiplier is normalized so that it identically equals 1.0000 in 2026 (divided by 2026 value), ensuring all scenarios start from the same observed Q1 FY27 volume of 3.760 mmscmd.
+  - *Source Quote*: NITI Aayog & RMI (2021) "Mobilising Electric Vehicle Financing in India", p. 12: *"The transition to electric vehicles (EVs) in India is targeted to reach 80% sales penetration for two- and three-wheelers, 70% for commercial cars, 40% for buses, and 30% for private cars by 2030."*
+  - *Sales vs Fleet Share Conversion*: NITI Aayog targets are **sales-share targets**, not on-road fleet shares. Converted to on-road fleet share ceilings using stock turnover lifetimes [ASSUMPTION]: 8-yr turnover for 3W (55% fleet ceiling), 10-yr turnover for 4W (25% fleet ceiling), 12-yr turnover for buses (28% fleet ceiling).
+  - Counterfactual ICE @ 4% CAGR: 2026 = 3.760 mmscmd, 2030 = 4.399 mmscmd [ASSUMPTION].
+  - **Low EV Adoption**: Multiplier = 0.9199 (EV fleet share 11.61%) -> Projected Demand = 4.046 mmscmd (**-8.0%** vs counterfactual, +7.6% vs 2026 base).
+  - **Medium EV Adoption (Baseline)**: Multiplier = 0.8305 (EV fleet share 23.68%) -> Projected Demand = 3.653 mmscmd (**-16.9%** vs counterfactual, -2.8% vs 2026 base).
+  - **High EV Adoption**: Multiplier = 0.6961 (EV fleet share 39.74%) -> Projected Demand = 3.062 mmscmd (**-30.4%** vs counterfactual, -18.6% vs 2026 base).
+- **Sanity Validation (5-Seed 20% Station Leave-Out Test)**:
+  - Seeds evaluated: `[42, 101, 777, 2023, 9999]`.
+  - **Surat**: 0.0% mean recovery (0/5 recovered per seed across all 5 seeds).
+  - **Rajkot**: 0.0% mean recovery (0/3 recovered per seed across all 5 seeds).
+  - *Honest Diagnosis*: Recovery is 0.0% because conservative $d_{\min} + 1.5$ km ($4.6$ km) exclusion buffers around approximate/pincode-centroid stations blanket the central core even when 20% of reliable stations are removed. Candidate grid cells can only emerge in unconstrained peripheral expansion corridors.
+- **Robust Siting Comparison (With vs Without Density Bonus)**:
+  - Evaluated under the Urban Density Fleet Resilience Rule [ASSUMPTION]: Dense corridors retain commercial fleet activity (auto-rickshaws, cabs) as peripheral private demand electrifies.
+  - **Surat**: 4 sites keep top-10 rank under the assumed density rule across all 3 EV scenarios (Base #6 [21.1613°N, 72.7388°E, pop density 36,745 pop/km²], plus 3 candidates at 21.1658°N, 72.7387°E with pop densities >29,000 pop/km²). Base #6 jumps from #6 to #2 under High EV. Base sites #1–#5 and #7–#10 drop out of the top 10 under the assumed density rule because their surrounding local densities (~13,331–21,570 pop/km²) are lower than inner nodes.
+  - **Rajkot**: 8 sites keep top-10 rank under the assumed density rule (#1, #2, #3, #4, #5, #6, #7, #9). Top 5 sites remain rock-solid at ranks #1 through #5 across Base, Low, Medium, and High EV.
 
 ## Appendix: Competitor analysis (illustrative: OSM contains very few competitor stations)
 - OSM contains only 2 mapped competitor CNG stations within 30 km of Surat and 2 within 30 km of Rajkot (~1% GGCL coverage baseline across Gujarat).
