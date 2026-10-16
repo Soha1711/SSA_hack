@@ -31,9 +31,21 @@ python src/forecasting/model.py
 python src/spacing/catchment_overlap.py
 python src/siting/rank_sites.py                      # Module D Part 1: Site ranking & buffer catchments
 python src/siting/ev_scenarios.py                    # Module D Part 2: EV S-curves & robust sites
+```
 
+### Run the dashboard
+Launch the self-contained interactive decision-support application:
+```bash
 streamlit run app/streamlit_app.py
 ```
+- **Startup Time**: Loads in < 5 seconds; fully self-contained using precomputed datasets with zero external API dependencies.
+- **Pages Built**:
+  1. **Overview & Data Provenance**: Problem definition (PS000002, GGCL), modular architecture, executive KPIs, and comprehensive dataset lineage catalogue with status badges (`REAL`, `MODELLED`, `ASSUMPTION`, `SOURCED`).
+  2. **Network Demand Forecast**: Historical quarterly sales (Q1 FY21 – Q1 FY27), walk-forward backtest comparisons, error ranking (Ridge winning at 1.76% MAPE), and Q2 FY27 official horizon forecast (3.88 mmscmd [80% CI: 3.80–3.97 mmscmd]).
+  3. **Buffer Spacing Analysis**: Pairwise overlap vs. distance scatter plots, 30%/20%/10% spacing thresholds across 7 catchment radii (1.5–8.0 km), and verified operating station map on OpenStreetMap tiles.
+  4. **Coverage Gaps & Siting (Illustrative)**: Top 10 candidate sites per city with toggle for Urban Density Fleet Resilience Rule, candidate pin map with operating station buffers, and an interactive "What-If" location checker.
+  5. **Multi-Segment EV Scenarios**: 2026–2035 demand trajectories normalized to 1.0000 in 2026 (3.760 mmscmd base), 3W/4W/Bus S-curve fleet share breakdowns, and NITI Aayog (2021) p. 12 verbatim target citations.
+  6. **Limitations & Data Ingestion Roadmap**: Honest audit of data deficits (0% leave-out recovery, statewide VAHAN, unserved population proxy) and complete enterprise CSV ingestion schema for GGCL proprietary sales data.
 
 ## Key results
 - **Forecast Error**: Baseline Naive lag-1: 3.35% MAPE / 0.121 mmscmd RMSE; Winning Ridge Model: 1.76% MAPE / 0.079 mmscmd RMSE (Q2 FY27 forecast: 3.88 mmscmd).
