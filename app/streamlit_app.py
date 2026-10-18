@@ -22,9 +22,20 @@ sys.path.insert(0, os.path.abspath("app"))
 from app.components import (
     badge_html,
     render_page_badges,
-    render_notice_banner,
-    render_footer
+    render_notice_banner
 )
+
+def render_footer():
+    """Render standardized challenge footer linking to GitHub."""
+    st.markdown("---")
+    st.markdown(
+        '<div style="text-align: center; color: #64748b; font-size: 14px; padding: 10px 0;">'
+        '<strong>Team ID: TM000846</strong> | '
+        'Seva First Innovation Challenge 2026 (PS000002) | '
+        '<a href="https://github.com/Soha1711/SSA_hack" target="_blank" style="color: #0066cc; text-decoration: none; font-weight: 600;">GitHub Repository: https://github.com/Soha1711/SSA_hack</a>'
+        '</div>',
+        unsafe_allow_html=True
+    )
 from app.data_loader import (
     load_quarterly_master,
     load_forecast_results,
