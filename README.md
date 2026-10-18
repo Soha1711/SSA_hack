@@ -2,7 +2,7 @@
 
 Seva First Innovation Challenge 2026 - **PS000002**: Station-Level Demand Forecasting for CNG Sales to Optimize Network Expansion (Gujarat Gas Company Limited).
 
-> Team ID: TM000846 | Demo video: _add link_ | Live app: _add link_
+> Team ID: TM000846 | GitHub: [Soha1711/SSA_hack](https://github.com/Soha1711/SSA_hack) | Demo video: _add link_ | Live app: _add link_
 
 ## What it does
 1. **Forecast engine** - forecasts CNG demand from real registrations, fuel-price gap and seasonality, with error measured against a baseline.

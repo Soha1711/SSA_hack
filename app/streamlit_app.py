@@ -89,6 +89,7 @@ st.markdown("""
 st.sidebar.markdown("## ⛽ CNG Demand Planner")
 st.sidebar.caption("Gujarat Gas Limited | Network Expansion Optimization")
 st.sidebar.markdown("**Challenge:** PS000002 | **Team:** TM000846")
+st.sidebar.markdown("[📂 GitHub: Soha1711/SSA_hack](https://github.com/Soha1711/SSA_hack)")
 st.sidebar.markdown("---")
 
 PAGES = [
