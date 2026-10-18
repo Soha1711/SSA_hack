@@ -72,7 +72,7 @@ def render_notice_banner(message: str, banner_type: str = "warning"):
     st.markdown(
         f'<div style="background-color: {bg_color}; border-left: 4px solid {border_color}; '
         f'padding: 12px 16px; border-radius: 4px; margin-bottom: 16px; color: {text_color}; '
-        f'font-size: 13.5px; line-height: 1.5;">'
+        f'font-size: 14.5px; line-height: 1.5;">'
         f'<strong>{icon} Data Notice:</strong> {message}'
         f'</div>',
         unsafe_allow_html=True
@@ -83,7 +83,7 @@ def render_footer():
     """Render standardized challenge footer."""
     st.markdown("---")
     st.markdown(
-        '<div style="text-align: center; color: #64748b; font-size: 12.5px; padding: 10px 0;">'
+        '<div style="text-align: center; color: #64748b; font-size: 14px; padding: 10px 0;">'
         '<strong>Team ID: TM000846</strong> | '
         'Seva First Innovation Challenge 2026 (PS000002) | '
         '<a href="https://github.com/Soha1711/SSA_hack" target="_blank" style="color: #0066cc; text-decoration: none;">GitHub Repository</a>'

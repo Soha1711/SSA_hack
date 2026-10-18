@@ -69,7 +69,7 @@ st.markdown("""
         color: #0066cc;
     }
     .metric-label {
-        font-size: 13px;
+        font-size: 14px;
         color: #64748b;
         font-weight: 600;
         text-transform: uppercase;
@@ -86,7 +86,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Sidebar Navigation
-st.sidebar.image("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Gujarat_Gas_logo.png/320px-Gujarat_Gas_logo.png", width=180) if False else None
 st.sidebar.markdown("## ⛽ CNG Demand Planner")
 st.sidebar.caption("Gujarat Gas Limited | Network Expansion Optimization")
 st.sidebar.markdown("**Challenge:** PS000002 | **Team:** TM000846")
@@ -120,10 +119,9 @@ st.sidebar.caption("Built for Seva First Innovation Challenge 2026. Self-contain
 if page_selection == "1. Overview":
     st.title("Network Expansion Decision Support System")
     st.subheader("PS000002: Station-Level Demand Forecasting for CNG Sales to Optimize Network Expansion")
-    render_page_badges(["REAL", "MODELLED", "ASSUMPTION", "SOURCED"])
 
     render_notice_banner(
-        "Station-level sales are proprietary to Gujarat Gas Company Limited (GGCL). Network-level and geographic analyses use publicly available, verified datasets. The pipeline is designed to accept proprietary station telemetry.",
+        "Station-level sales are proprietary to Gujarat Gas Company Limited (GGCL): while aggregate quarterly sales are reported in earnings disclosures, station-level hourly dispensing volumes and queue lengths are closely guarded commercial assets. Network-level and geographic analyses use publicly available, verified datasets. The pipeline is designed to accept proprietary station telemetry.",
         banner_type="warning"
     )
 
@@ -134,15 +132,14 @@ if page_selection == "1. Overview":
         ### The Commercial Problem
         City Gas Distribution (CGD) companies like **Gujarat Gas Limited (GGCL)** face capital allocation trade-offs when expanding their retail Compressed Natural Gas (CNG) network:
         - **Cannibalisation vs. Access**: Adding stations too close together splits existing vehicle throughput rather than capturing new demand.
-        - **Electrification Headwinds**: Commercial fleets (3-wheelers, app-based taxis, city buses) are undergoing accelerated electrification under state and national policy mandates.
-        - **Data Asymmetry**: While aggregate quarterly sales are reported in earnings disclosures, station-level hourly dispensing volumes and queue lengths are closely guarded commercial assets.
+        - **Electrification Headwinds**: Electrification of three-wheelers, taxis and buses could reduce future CNG demand.
         """)
 
     with col2:
         st.markdown("""
         ### Solution Architecture
         This platform delivers an end-to-end analytical framework organized into **four engines**:
-        1. **Demand Forecast**: Time-series model (1.76% MAPE) linking fuel price ratios and fleet diffusion to forecast quarterly demand.
+        1. **Demand Forecast**: Regression model (1.76% MAPE in a 10-quarter backtest) linking fuel price ratios and fleet diffusion to forecast quarterly demand.
         2. **Station Spacing**: Spatial buffer co-exposure model on WorldPop population density establishing minimum station separation.
         3. **Coverage Gaps**: Land-masked municipal candidate grid prioritizing unserved demand gaps under operating station exclusion zones.
         4. **EV Scenarios**: Stock turnover S-curve model projecting 2026–2035 CNG volume contraction across vehicle categories.
@@ -158,7 +155,7 @@ if page_selection == "1. Overview":
         <div class="metric-card">
             <div class="metric-label">Winning Model Out-of-Sample Error</div>
             <div class="metric-value">1.76%</div>
-            <div style="font-size: 12px; color: #10b981; font-weight: 600;">MAPE vs. 3.35% Baseline Naive</div>
+            <div style="font-size: 14px; color: #10b981; font-weight: 600;">MAPE vs. 3.35% Baseline Naive</div>
         </div>
         """, unsafe_allow_html=True)
     with kpi2:
@@ -166,7 +163,7 @@ if page_selection == "1. Overview":
         <div class="metric-card">
             <div class="metric-label">Q2 FY27 Point Forecast</div>
             <div class="metric-value">3.88 mmscmd</div>
-            <div style="font-size: 12px; color: #3b82f6; font-weight: 600;">80% CI: [3.80, 3.97] mmscmd</div>
+            <div style="font-size: 14px; color: #3b82f6; font-weight: 600;">80% CI: [3.80, 3.97] mmscmd</div>
         </div>
         """, unsafe_allow_html=True)
     with kpi3:
@@ -174,7 +171,7 @@ if page_selection == "1. Overview":
         <div class="metric-card">
             <div class="metric-label">Surat Urban Spacing (20% Overlap)</div>
             <div class="metric-value">3.11 km</div>
-            <div style="font-size: 12px; color: #64748b; font-weight: 600;">3.98 km Road Equivalent (1.28 Circuity)</div>
+            <div style="font-size: 14px; color: #64748b; font-weight: 600;">3.98 km Road Equivalent (1.28 Circuity)</div>
         </div>
         """, unsafe_allow_html=True)
     with kpi4:
@@ -182,7 +179,7 @@ if page_selection == "1. Overview":
         <div class="metric-card">
             <div class="metric-label">2030 Baseline Demand Impact</div>
             <div class="metric-value">-16.9%</div>
-            <div style="font-size: 12px; color: #f59e0b; font-weight: 600;">Medium EV vs. 4% CAGR Counterfactual</div>
+            <div style="font-size: 14px; color: #f59e0b; font-weight: 600;">Medium EV vs. 4% CAGR Counterfactual</div>
         </div>
         """, unsafe_allow_html=True)
 
@@ -201,7 +198,7 @@ if page_selection == "1. Overview":
         prov_display.to_html(escape=False, index=False),
         unsafe_allow_html=True
     )
-    st.caption("All datasets are locally versioned in `data/raw` and `data/processed`. No live external API calls are made during app execution.")
+    st.markdown("All datasets are locally versioned in `data/raw` and `data/processed`. No live external API calls are made during app execution.")
 
     render_footer()
 
@@ -927,37 +924,12 @@ elif page_selection == "6. Limitations and next steps":
     # Limitations List
     st.markdown("### Documented Methodological Limitations")
     st.markdown("""
-    In strict compliance with challenge guidelines, all analytical boundaries and known data deficits are transparently documented:
+    1. Station-level sales are proprietary to GGCL, so station demand is estimated, not observed.
+    2. Only 44 of 136 geocoded stations have reliable coordinates; the rest are approximate.
+    3. Catchments are circular buffers, not road-network isolines; radius and circuity factor are assumptions.
+    4. The coverage-gap ranking is illustrative: a leave-out test recovered 0% of removed stations.
+    5. VAHAN registrations are statewide; district-level series are not yet used.
     """)
-
-    l1, l2 = st.columns(2)
-    with l1:
-        st.markdown(r"""
-        1. **Proprietary Station-Level Sales Data**:
-           - **Limitation**: GGCL's station-level dispenser sales telemetry is proprietary. All candidate scores rely on **unserved population proxies** from the WorldPop 2020 raster rather than observed cash-register sales.
-           - **Consequence**: Scores indicate relative geographic demand exposure, not guaranteed commercial dispenser throughput.
-        
-        2. **20% Station Leave-Out Sanity Test (0.0% Recovery)**:
-           - **Limitation**: When 20% of verified stations were removed across 5 random seeds (`[42, 101, 777, 2023, 9999]`), the mean recovery rate of removed station areas in the Top 10 candidate set was **0.0% in both Surat and Rajkot**.
-           - **Diagnosis**: Conservative $d_{\min} + 1.5 \text{ km} \approx 4.6 \text{ km}$ exclusion zones around the 92 approximate/pincode-centroid stations blanket the central core. Removing verified stations cannot open up core cells because approximate stations block them. The algorithm correctly routes all candidate capacity to unconstrained peripheral growth corridors.
-        
-        3. **Statewide vs. District-Level VAHAN Registrations**:
-           - **Limitation**: VAHAN registrations are currently aggregated at the Gujarat statewide level. RTO-specific series for Surat (`GJ-05`, `GJ-28`) and Rajkot (`GJ-03`, `GJ-36`) have not yet been isolated into separate local features.
-        """)
-
-    with l2:
-        st.markdown(f"""
-        4. **Buffer-Based Planar Catchments vs. Road Networks**:
-           - **Limitation**: Road network isolines could not be generated due to Overpass API rate limits and network timeouts. Catchments are circular metric buffers (UTM Zone 43N).
-           - **Assumptions**: The 1.28 circuity factor and 25 km/h urban travel speed are published transportation benchmarks {badge_html('ASSUMPTION')}, not measured telemetry.
-        
-        5. **Geocoding Precision Deficit**:
-           - **Limitation**: Only 44 stations (32.4% of geocoded entries) possess verified high/medium confidence unique coordinates. 92 stations have approximate coordinates or pincode centroids.
-           - **Consequence**: All candidate site locations must be treated as **illustrative** until ground-truth GPS coordinates are verified.
-        
-        6. **Competitor Proximity Incompleteness**:
-           - **Limitation**: OpenStreetMap contains only 2 competitor stations near Surat and 2 near Rajkot (~1% network coverage). Competitor proximity is reported purely as an illustrative proof-of-concept.
-        """, unsafe_allow_html=True)
 
     st.markdown("---")
 
@@ -969,34 +941,15 @@ elif page_selection == "6. Limitations and next steps":
 
     # Expected CSV Schema
     schema_df = pd.DataFrame([
-        {"Column Name": "station_id", "Data Type": "STRING", "Required": "YES", "Example": "GGL-SRT-0142", "Description": "Unique internal retail station identifier"},
-        {"Column Name": "station_name", "Data Type": "STRING", "Required": "YES", "Example": "Adajan CNG Station", "Description": "Official station trade name"},
-        {"Column Name": "latitude", "Data Type": "FLOAT", "Required": "YES", "Example": "21.19421", "Description": "WGS84 GPS coordinate (precision ≥ 5 decimals)"},
-        {"Column Name": "longitude", "Data Type": "FLOAT", "Required": "YES", "Example": "72.79314", "Description": "WGS84 GPS coordinate (precision ≥ 5 decimals)"},
-        {"Column Name": "city", "Data Type": "STRING", "Required": "YES", "Example": "Surat", "Description": "Geographical Area (Surat, Rajkot, etc.)"},
-        {"Column Name": "quarter", "Data Type": "STRING", "Required": "YES", "Example": "Q1 FY26", "Description": "Quarter identifier matching master table"},
-        {"Column Name": "cng_sales_volume_kg", "Data Type": "FLOAT", "Required": "YES", "Example": "342150.0", "Description": "Quarterly metered retail CNG sales in kilograms"},
-        {"Column Name": "cng_sales_volume_scm", "Data Type": "FLOAT", "Required": "OPTIONAL", "Example": "451638.0", "Description": "Standard cubic meters equivalent"},
-        {"Column Name": "dispenser_count", "Data Type": "INTEGER", "Required": "YES", "Example": "4", "Description": "Active physical dispensing nozzles"},
-        {"Column Name": "compressor_capacity_kg_hr", "Data Type": "FLOAT", "Required": "OPTIONAL", "Example": "1200.0", "Description": "Compressor rated capacity for queue modeling"}
+        {"Column Name": "station_id", "Data Type": "STRING", "Required": "YES", "Description": "Unique internal retail station identifier"},
+        {"Column Name": "latitude", "Data Type": "FLOAT", "Required": "YES", "Description": "WGS84 GPS latitude coordinate (precision ≥ 5 decimals)"},
+        {"Column Name": "longitude", "Data Type": "FLOAT", "Required": "YES", "Description": "WGS84 GPS longitude coordinate (precision ≥ 5 decimals)"},
+        {"Column Name": "quarter", "Data Type": "STRING", "Required": "YES", "Description": "Quarter identifier matching master table (e.g., Q1 FY26)"},
+        {"Column Name": "cng_sales_volume_kg", "Data Type": "FLOAT", "Required": "YES", "Description": "Quarterly metered retail CNG sales volume in kilograms"},
+        {"Column Name": "dispenser_count", "Data Type": "INTEGER", "Required": "YES", "Description": "Active physical dispensing nozzles count"}
     ])
     st.dataframe(schema_df, use_container_width=True, hide_index=True)
 
-    # Workflow Steps
-    st.markdown(r"""
-    #### Planned Processing Workflow Upon Ingestion
-    ```bash
-    # 1. Place proprietary export in raw data folder
-    cp ggcl_station_sales_2026.csv data/raw/ggcl_station_sales.csv
-
-    # 2. Run automated pipeline (substitutes population proxy with real sales calibration)
-    python src/features/build_master_table.py --with-station-sales
-    python src/spacing/catchment_overlap.py --calibrate-cannibalisation
-    python src/siting/rank_sites.py --target-revenue
-    ```
-    - **Step 1: Ground-Truth Calibration**: The spacing model replaces geographic population overlap with an empirical revenue cannibalization regression ($\Delta \text{Sales}_i = f(\text{Distance}_{ij}, \text{Sales}_j)$).
-    - **Step 2: Queue & Peak Congestion**: Dispensers and compressor ratings unlock the hourly queue delay simulator, prioritizing relief stations near congested nodes.
-    - **Step 3: Financial ROI**: Candidate scores convert directly into projected payback periods and internal rate of return (IRR).
-    """)
+    st.markdown("Next step: calibrate the spacing and ranking methods on GGCL station-level sales when available.")
 
     render_footer()
