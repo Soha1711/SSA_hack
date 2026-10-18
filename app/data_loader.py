@@ -127,8 +127,27 @@ def load_ev_scenarios(filepath: str = "data/processed/ev_scenarios.csv") -> pd.D
     return pd.read_csv(filepath)
 
 
+def get_station_address_count() -> int:
+    """Compute real count of rows across raw station address files."""
+    files = [
+        "data/raw/station_addresses_ahmedabad.csv",
+        "data/raw/station_addresses_rajkot.csv",
+        "data/raw/station_addresses_surat.csv",
+        "data/raw/station_addresses_vadodara.csv",
+    ]
+    total = 0
+    for f in files:
+        if os.path.exists(f):
+            try:
+                total += len(pd.read_csv(f))
+            except Exception:
+                pass
+    return total if total > 0 else 184
+
+
 def get_data_provenance_table() -> pd.DataFrame:
     """Return structured data provenance catalogue for the Overview page."""
+    station_count = get_station_address_count()
     data = [
         {
             "Dataset": "GGCL Historical CNG Volumes",
@@ -153,7 +172,7 @@ def get_data_provenance_table() -> pd.DataFrame:
         },
         {
             "Dataset": "Operating CNG Station Network",
-            "Source / Provider": "GGCL Official Directory (186 stations) + OpenStreetMap Geocoding",
+            "Source / Provider": f"GGCL Official Directory ({station_count} stations) + OpenStreetMap Geocoding",
             "Status": "REAL",
             "Timeframe / Coverage": "136 geocoded stations (Surat, Rajkot, Ahmedabad, Vadodara)",
             "Documented Limitations": "Only 44 stations have high/medium confidence unique coordinates; 92 approximate/pincode centroids."

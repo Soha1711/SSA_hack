@@ -93,15 +93,15 @@ st.sidebar.markdown("**Challenge:** PS000002 | **Team:** TM000846")
 st.sidebar.markdown("---")
 
 PAGES = [
-    "1. Overview & Data Provenance",
-    "2. Network Demand Forecast",
-    "3. Buffer Spacing Analysis",
-    "4. Coverage Gaps & Siting (Illustrative)",
-    "5. Multi-Segment EV Scenarios",
-    "6. Limitations & Data Ingestion Roadmap"
+    "1. Overview",
+    "2. Demand forecast",
+    "3. Station spacing",
+    "4. Coverage gaps (illustrative)",
+    "5. EV scenarios",
+    "6. Limitations and next steps"
 ]
 
-page_selection = st.sidebar.radio("Navigate Module", PAGES, index=0)
+page_selection = st.sidebar.radio("Navigate", PAGES, index=0)
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("### Status Legend")
@@ -115,15 +115,15 @@ st.sidebar.caption("Built for Seva First Innovation Challenge 2026. Self-contain
 
 
 # ==============================================================================
-# PAGE 1: OVERVIEW & DATA PROVENANCE
+# PAGE 1: OVERVIEW
 # ==============================================================================
-if page_selection == "1. Overview & Data Provenance":
+if page_selection == "1. Overview":
     st.title("Network Expansion Decision Support System")
     st.subheader("PS000002: Station-Level Demand Forecasting for CNG Sales to Optimize Network Expansion")
     render_page_badges(["REAL", "MODELLED", "ASSUMPTION", "SOURCED"])
 
     render_notice_banner(
-        "Station-level sales are proprietary to Gujarat Gas Company Limited (GGCL). Network-level and geographic analyses use publicly available, verified datasets. The pipeline is architected to ingest proprietary station telemetry with zero code changes.",
+        "Station-level sales are proprietary to Gujarat Gas Company Limited (GGCL). Network-level and geographic analyses use publicly available, verified datasets. The pipeline is designed to accept proprietary station telemetry.",
         banner_type="warning"
     )
 
@@ -141,11 +141,11 @@ if page_selection == "1. Overview & Data Provenance":
     with col2:
         st.markdown("""
         ### Solution Architecture
-        This platform delivers an end-to-end analytical framework organized into **four modular engines**:
-        1. **Module A (Network Forecast)**: Econometric time-series model (1.76% MAPE) linking fuel price ratios and fleet diffusion to forecast quarterly demand.
-        2. **Module B (Spacing Analysis)**: Spatial buffer co-exposure model on WorldPop population density establishing empirical minimum station separation.
-        3. **Module C (Site Ranking)**: Land-masked municipal candidate grid prioritizing unserved demand gaps under operating station exclusion zones.
-        4. **Module D (EV S-Curves)**: Stock turnover S-curve model projecting 2026–2035 CNG volume contraction across vehicle categories.
+        This platform delivers an end-to-end analytical framework organized into **four engines**:
+        1. **Demand Forecast**: Time-series model (1.76% MAPE) linking fuel price ratios and fleet diffusion to forecast quarterly demand.
+        2. **Station Spacing**: Spatial buffer co-exposure model on WorldPop population density establishing minimum station separation.
+        3. **Coverage Gaps**: Land-masked municipal candidate grid prioritizing unserved demand gaps under operating station exclusion zones.
+        4. **EV Scenarios**: Stock turnover S-curve model projecting 2026–2035 CNG volume contraction across vehicle categories.
         """)
 
     st.markdown("---")
@@ -209,9 +209,9 @@ if page_selection == "1. Overview & Data Provenance":
 # ==============================================================================
 # PAGE 2: NETWORK DEMAND FORECAST
 # ==============================================================================
-elif page_selection == "2. Network Demand Forecast":
-    st.title("Network-Level Econometric Demand Forecasting")
-    st.subheader("Module A: Historical Backtest, Model Comparison, and Q2 FY27 Projection")
+elif page_selection == "2. Demand forecast":
+    st.title("Network-level CNG demand forecast")
+    st.subheader("Historical Backtest, Model Comparison, and Q2 FY27 Projection")
     render_page_badges(["REAL", "MODELLED"])
 
     df_master = load_quarterly_master()
@@ -253,9 +253,39 @@ elif page_selection == "2. Network Demand Forecast":
             </div>
             """, unsafe_allow_html=True)
 
+        # Calculate performance metrics dynamically from forecast_results.csv
+        metrics = []
+        models_meta = [
+            ("naive", "Naive Lag-1 Baseline", "Flat extrapolation of previous quarter volume"),
+            ("seasonal_naive", "Seasonal Naive (Lag-4)", "Same quarter previous fiscal year volume"),
+            ("linear_regression", "Linear OLS (Lag-1 + Fleet)", "2-feature unregularized linear regression"),
+            ("linear_3feat", "Linear OLS (Lag-1 + Fleet + Price)", "3-feature unregularized specification with petrol price gap"),
+            ("ridge_regression", "Standardized Ridge (Winning Model)", "L2-regularized standardized formulation (alpha=1.0)")
+        ]
+        
+        for col_name, display_name, desc in models_meta:
+            if col_name in df_results.columns:
+                actual = df_results["actual"]
+                pred = df_results[col_name]
+                mape = np.mean(np.abs((actual - pred) / actual)) * 100.0
+                rmse = np.sqrt(np.mean((actual - pred) ** 2))
+                mae = np.mean(np.abs(actual - pred))
+                is_winner = col_name == "ridge_regression"
+                metrics.append({
+                    "Model": display_name + (" ⭐ (SELECTED)" if is_winner else ""),
+                    "Specification & Drivers": desc,
+                    "MAPE (%)": f"{mape:.2f}%",
+                    "RMSE (mmscmd)": f"{rmse:.3f}",
+                    "MAE (mmscmd)": f"{mae:.3f}",
+                    "Selected Status": "WINNER" if is_winner else "BENCHMARK"
+                })
+                
+        metrics_df = pd.DataFrame(metrics)
+        n_models = len(metrics_df)
+
         # Plotly Historical & Backtest Chart
         st.markdown("### Historical Sales vs. Model Backtest Predictions")
-        st.caption("best of 4 models tested on 10 quarters (Q4 FY24 – Q1 FY27 rolling walk-forward backtest)")
+        st.caption(f"Best of {n_models} models tested over 10 quarters (Q4 FY24 – Q1 FY27 rolling walk-forward backtest). All models tested are shown.")
 
         fig = go.Figure()
 
@@ -327,44 +357,7 @@ elif page_selection == "2. Network Demand Forecast":
 
         # Model Error Comparison Table
         st.markdown("### Walk-Forward Backtest Accuracy Metrics (10 Out-of-Sample Quarters)")
-        
-        # Calculate performance metrics dynamically from forecast_results.csv
-        metrics = []
-        models_meta = [
-            ("naive", "Naive Lag-1 Baseline", "Flat extrapolation of previous quarter volume"),
-            ("seasonal_naive", "Seasonal Naive (Lag-4)", "Same quarter previous fiscal year volume"),
-            ("linear_regression", "Linear OLS (Lag-1 + Fleet)", "2-feature unregularized linear regression"),
-            ("linear_3feat", "Linear OLS (Lag-1 + Fleet + Price)", "3-feature unregularized specification with petrol price gap"),
-            ("ridge_regression", "Standardized Ridge (Winning Model)", "L2-regularized standardized formulation (alpha=1.0)")
-        ]
-        
-        for col_name, display_name, desc in models_meta:
-            if col_name in df_results.columns:
-                actual = df_results["actual"]
-                pred = df_results[col_name]
-                mape = np.mean(np.abs((actual - pred) / actual)) * 100.0
-                rmse = np.sqrt(np.mean((actual - pred) ** 2))
-                mae = np.mean(np.abs(actual - pred))
-                is_winner = col_name == "ridge_regression"
-                metrics.append({
-                    "Model": display_name + (" ⭐ (SELECTED)" if is_winner else ""),
-                    "Specification & Drivers": desc,
-                    "MAPE (%)": f"{mape:.2f}%",
-                    "RMSE (mmscmd)": f"{rmse:.3f}",
-                    "MAE (mmscmd)": f"{mae:.3f}",
-                    "Selected Status": "WINNER" if is_winner else "BENCHMARK"
-                })
-                
-        metrics_df = pd.DataFrame(metrics)
         st.dataframe(metrics_df, use_container_width=True, hide_index=True)
-
-        # Explanatory Notes
-        with st.expander("Econometric Interpretation & Feature Elasticity"):
-            st.markdown("""
-            - **Autoregressive Persistence**: Retail CNG consumption displays very strong quarter-on-quarter inertia ($\beta_{\text{lag1}} \approx 0.82$). Drivers who convert their vehicles to CNG do not return to petrol unless the price discount drops below 20%.
-            - **Fleet Conversion Velocity**: Cumulative VAHAN commercial CNG registrations act as an indispensable co-driver ($\beta_{\text{fleet}} \approx 0.14$), capturing network expansion throughput.
-            - **Price Ratio Stabilization**: The retail petrol-to-CNG price ratio fluctuated between 1.20 and 1.72 over the 2019–2026 sample period. Ridge regularization prevents collinearity between fleet growth and price ratios from distorting out-of-sample stability.
-            """)
 
     render_footer()
 
@@ -372,10 +365,10 @@ elif page_selection == "2. Network Demand Forecast":
 # ==============================================================================
 # PAGE 3: SPACING ANALYSIS
 # ==============================================================================
-elif page_selection == "3. Buffer Spacing Analysis":
-    st.title("Buffer-Based Spacing & Demand Overlap Analyzer")
-    st.subheader("Module B: Empirical Spacing Thresholds and Pairwise Demand Overlap")
-    render_page_badges(["REAL", "MODELLED", "ASSUMPTION"])
+elif page_selection == "3. Station spacing":
+    st.title("Station Spacing")
+    st.subheader("Spacing thresholds under an assumed catchment radius")
+    render_page_badges(["MODELLED", "ASSUMPTION"])
 
     df_summary = load_spacing_summary()
     df_pairs = load_spacing_results()
@@ -389,16 +382,14 @@ elif page_selection == "3. Buffer Spacing Analysis":
             help="Thresholds represent the geographic distance at which two circular population catchments share less than a given percentage of population."
         )
 
-        # Control Filters
-        f1, f2, f3 = st.columns([1.5, 1.5, 3])
+        # Control Filters (Urban mode only)
+        f1, f2 = st.columns([1.5, 2.5])
         with f1:
             sel_city = st.selectbox("Select Target City", ["Surat", "Rajkot"], index=0)
         with f2:
-            sel_env = st.selectbox("Environment Mode", ["urban", "corridor"], index=0)
-        with f3:
-            avail_radii = sorted(df_summary[(df_summary["city"] == sel_city) & (df_summary["environment"] == sel_env)]["radius_km"].unique())
-            default_idx = 1 if (sel_env == "urban" and 2.0 in avail_radii) else (1 if 6.0 in avail_radii else 0)
-            sel_radius = st.selectbox("Assumed Catchment Radius (R, km)", avail_radii, index=default_idx)
+            avail_radii = [1.5, 2.0, 2.5, 3.0]
+            sel_radius = st.selectbox("Assumed Catchment Radius (R, km)", avail_radii, index=1)
+        sel_env = "urban"
 
         # Spacing Threshold Metrics for selected configuration
         st_rows = df_summary[
@@ -407,7 +398,7 @@ elif page_selection == "3. Buffer Spacing Analysis":
             & (df_summary["radius_km"] == sel_radius)
         ].sort_values("overlap_threshold_pct", ascending=False)
 
-        st.markdown(f"### Recommended Separation Thresholds ({sel_city} - {sel_env.title()}, R = {sel_radius} km)")
+        st.markdown(f"### Spacing thresholds under an assumed catchment radius ({sel_city}, R = {sel_radius} km)")
         
         m_cols = st.columns(3)
         threshold_tags = [30, 20, 10]
@@ -458,7 +449,7 @@ elif page_selection == "3. Buffer Spacing Analysis":
 
                 # Add horizontal reference lines for 30%, 20%, 10%
                 fig_ov.add_hline(y=0.30, line_dash="dash", line_color="#f59e0b", annotation_text="30% Overlap")
-                fig_ov.add_hline(y=0.20, line_dash="dash", line_color="#ef4444", annotation_text="20% Threshold (Recommended)")
+                fig_ov.add_hline(y=0.20, line_dash="dash", line_color="#ef4444", annotation_text="20% Threshold")
                 fig_ov.add_hline(y=0.10, line_dash="dash", line_color="#10b981", annotation_text="10% Overlap")
 
                 fig_ov.update_layout(
@@ -525,9 +516,9 @@ elif page_selection == "3. Buffer Spacing Analysis":
 # ==============================================================================
 # PAGE 4: COVERAGE GAPS & SITING (ILLUSTRATIVE)
 # ==============================================================================
-elif page_selection == "4. Coverage Gaps & Siting (Illustrative)":
+elif page_selection == "4. Coverage gaps (illustrative)":
     st.title("Coverage Gaps & Candidate Site Prioritization")
-    st.subheader("Module C: Audited Municipal Grid Evaluation & Commercial Density Ranking")
+    st.subheader("Audited Municipal Grid Evaluation & Priority Siting")
     render_page_badges(["MODELLED", "ASSUMPTION"])
 
     render_notice_banner(
@@ -541,28 +532,11 @@ elif page_selection == "4. Coverage Gaps & Siting (Illustrative)":
     if df_ranked.empty or df_stations.empty:
         st.error("Ranked sites data could not be loaded from data/processed/ranked_sites.csv.")
     else:
-        # Controls
-        c1, c2, c3 = st.columns([1.5, 2.5, 3])
-        with c1:
-            sel_city = st.selectbox("Target Municipal Area", ["Surat", "Rajkot"], index=0, key="gap_city")
-        with c2:
-            apply_density_rule = st.toggle("Apply Urban Density Fleet Resilience Rule", value=False)
-        with c3:
-            st.markdown(f"""
-            <div style="font-size: 12.5px; color: #475569; padding-top: 10px;">
-                Mode: <strong>{'With Density Bonus (High EV Robustness)' if apply_density_rule else 'Without Density Bonus (Base Priority)'}</strong>
-            </div>
-            """, unsafe_allow_html=True)
+        # City Filter
+        sel_city = st.selectbox("Target Municipal Area", ["Surat", "Rajkot"], index=0, key="gap_city")
 
         city_ranked = df_ranked[df_ranked["city"] == sel_city].copy()
-        
-        # Sort based on toggle
-        if apply_density_rule:
-            display_ranked = city_ranked.sort_values("rank_density_rule").head(10).reset_index(drop=True)
-            active_rank_col = "rank_density_rule"
-        else:
-            display_ranked = city_ranked.sort_values("rank_base").head(10).reset_index(drop=True)
-            active_rank_col = "rank_base"
+        display_ranked = city_ranked.sort_values("rank").head(10).reset_index(drop=True)
 
         # Map and Table side by side
         col_map, col_tbl = st.columns([1.1, 1.1])
@@ -572,7 +546,6 @@ elif page_selection == "4. Coverage Gaps & Siting (Illustrative)":
             
             # Station subsets
             rel_stns = df_stations[(df_stations["city"] == sel_city) & (df_stations["is_reliable"] == True)]
-            app_stns = df_stations[(df_stations["city"] == sel_city) & (df_stations["is_reliable"] == False) & (df_stations["geocoded"] == True)]
 
             m_lat = display_ranked["lat"].mean()
             m_lon = display_ranked["lon"].mean()
@@ -600,11 +573,9 @@ elif page_selection == "4. Coverage Gaps & Siting (Illustrative)":
                     popup=r["station_name"]
                 ).add_to(m_siting)
 
-            # Draw candidate pins
+            # Draw numbered candidate markers 1 to 10
             for _, cand in display_ranked.iterrows():
-                rnk = int(cand[active_rank_col])
-                pop_fmt = f"{cand['unserved_pop']:,.0f}"
-                dens_fmt = f"{cand['implied_density']:,.0f}"
+                rnk = int(cand["rank"])
                 
                 # Candidate catchment
                 folium.Circle(
@@ -618,50 +589,62 @@ elif page_selection == "4. Coverage Gaps & Siting (Illustrative)":
                     tooltip=f"Candidate #{rnk} Catchment (2.0 km)"
                 ).add_to(m_siting)
 
-                # Candidate Star/Pin Marker
+                # Numbered Marker with rank hover tooltip
                 folium.Marker(
                     location=[cand["lat"], cand["lon"]],
                     popup=folium.Popup(
                         f"<b>Candidate Site #{rnk}</b><br>"
-                        f"Unserved Pop: {pop_fmt}<br>"
-                        f"Implied Density: {dens_fmt} pop/km²<br>"
                         f"Nearest Station: {cand['nearest_station_km']:.2f} km<br>"
-                        f"Score: {cand['score']:.1f}<br>"
-                        f"Status: {cand['robustness_status']}",
-                        max_width=250
+                        f"Overlap: {cand['overlap_share']*100:.1f}%<br>"
+                        f"Coverage Gap Score: {cand['score']:.1f}",
+                        max_width=220
                     ),
-                    tooltip=f"#{rnk} (Score {cand['score']:.1f})",
-                    icon=folium.Icon(color="green", icon="star", prefix="fa")
+                    tooltip=f"Rank #{rnk}",
+                    icon=folium.DivIcon(
+                        html=f"""<div style="
+                            background-color: #10b981;
+                            color: #ffffff;
+                            font-weight: 700;
+                            font-size: 11px;
+                            width: 22px;
+                            height: 22px;
+                            border-radius: 50%;
+                            border: 2px solid #ffffff;
+                            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-align: center;
+                            line-height: 18px;
+                        ">{rnk}</div>""",
+                        icon_size=(22, 22),
+                        icon_anchor=(11, 11)
+                    )
                 ).add_to(m_siting)
 
             st_folium(m_siting, height=520, use_container_width=True)
-            st.caption("Green stars: Top 10 candidate sites | Blue circles: Existing verified operating stations (2.0 km catchments). Map data (c) OpenStreetMap contributors.")
+            st.caption("Numbered markers (1–10): Candidate sites ranked by coverage gap | Blue circles: Existing verified operating stations (2.0 km catchments). Map data (c) OpenStreetMap contributors.")
 
         with col_tbl:
             st.markdown(f"#### Priority Siting Portfolio Data ({sel_city})")
             
-            # Format display dataframe
-            table_show = display_ranked[[
-                active_rank_col, "lat", "lon", "unserved_pop", "implied_density",
-                "nearest_station_km", "score", "robustness_status"
-            ]].copy()
-            
-            table_show.columns = [
-                "Rank", "Latitude", "Longitude", "Unserved Pop", "Implied Density",
-                "Nearest Stn (km)", "Score", "Robustness Under Fleet Rule"
-            ]
-            table_show["Unserved Pop"] = table_show["Unserved Pop"].apply(lambda v: f"{v:,.0f}")
-            table_show["Implied Density"] = table_show["Implied Density"].apply(lambda v: f"{v:,.0f} pop/km²")
-            table_show["Nearest Stn (km)"] = table_show["Nearest Stn (km)"].apply(lambda v: f"{v:.2f}")
-            table_show["Score"] = table_show["Score"].apply(lambda v: f"{v:.1f}")
+            # Format display dataframe without absolute unserved pop or implied density
+            table_show = pd.DataFrame({
+                "Rank": display_ranked["rank"].astype(int),
+                "Location": [f"{r.lat:.4f}, {r.lon:.4f}" for _, r in display_ranked.iterrows()],
+                "Nearest Stn (km)": display_ranked["nearest_station_km"].apply(lambda v: f"{v:.2f}"),
+                "Overlap (%)": display_ranked["overlap_share"].apply(lambda v: f"{v*100:.1f}%"),
+                "Coverage Gap Score": display_ranked["score"].apply(lambda v: f"{v:.1f}")
+            })
 
             st.dataframe(table_show, use_container_width=True, hide_index=True)
+            st.caption("Relative coverage-gap ranking from WorldPop 1 km data; illustrative, not validated; absolute population is not shown because the raster is too coarse at 2 km.")
 
             st.markdown("""
             **Portfolio Notes:**
-            - **Unserved Population**: Total residential population inside 2.0 km circular buffer outside any existing station catchment.
-            - **Implied Density**: Ratio of buffer unserved population to buffer area ($12.57 \text{ km}^2$).
-            - **Robustness Wording**: Labelled as `"keeps top-10 rank under the assumed density rule"` if the candidate stays in the Top 10 under Low, Medium, and High EV adoption.
+            - **Coverage Gap Score**: Relative index (0–100) indicating potential demand outside operating station catchments.
+            - **Buffer Area**: Standard 2.0 km circular catchment buffer covers 12.57 km2.
+            - **Separation**: Evaluated against operating stations under assumed 2.0 km radius.
             """)
 
         # Optional Stretch: Fast What-If Location Evaluator
@@ -695,18 +678,15 @@ elif page_selection == "4. Coverage Gaps & Siting (Illustrative)":
                 req_spacing = 3.11 if test_city == "Surat" else 3.07
                 spacing_ok = min_d >= req_spacing
 
-                # Overlap ratio estimation
-                overlap_est = max(0.0, min(1.0, (2.0 * 2.0 - min_d) / (2.0 * 2.0))) if min_d < 4.0 else 0.0
-
                 wi_res1, wi_res2, wi_res3 = st.columns(3)
                 with wi_res1:
                     st.metric("Nearest Verified Station", f"{min_d:.2f} km", delta=f"{min_d - req_spacing:+.2f} km vs threshold")
                 with wi_res2:
-                    st.metric("Minimum Spacing Status", "PASSED ✓" if spacing_ok else "VIOLATION ⚠️", delta="Eligible" if spacing_ok else "Spacing Conflict")
+                    st.metric("Minimum Spacing Status", "PASSED ✓" if spacing_ok else "VIOLATION ⚠️", delta="Outside minimum spacing" if spacing_ok else "Inside minimum spacing")
                 with wi_res3:
                     st.metric("Nearest Station Name", nearest_stn_name)
                     
-                st.caption(f"Nearest station: {nearest_stn_name}. Required spacing threshold for 20% overlap: {req_spacing} km.")
+                st.caption(f"Nearest station: {nearest_stn_name}. Required spacing threshold for 20% overlap: {req_spacing} km. Only the 44 verified stations are checked.")
 
     render_footer()
 
@@ -714,9 +694,9 @@ elif page_selection == "4. Coverage Gaps & Siting (Illustrative)":
 # ==============================================================================
 # PAGE 5: EV SCENARIOS
 # ==============================================================================
-elif page_selection == "5. Multi-Segment EV Scenarios":
+elif page_selection == "5. EV scenarios":
     st.title("Electric Vehicle Diffusion & Fleet Scenarios")
-    st.subheader("Module D: Policy-Aligned S-Curve Multipliers & 2026–2035 Demand Trajectories")
+    st.subheader("Policy-Aligned S-Curve Multipliers & 2026–2035 Demand Trajectories")
     render_page_badges(["SOURCED", "ASSUMPTION", "MODELLED"])
 
     df_ev = load_ev_scenarios()
@@ -734,10 +714,11 @@ elif page_selection == "5. Multi-Segment EV Scenarios":
         </div>
         """, unsafe_allow_html=True)
 
-        # Normalization Rule Callout
+        # Normalization Rule Callout & Note
         st.markdown(f"""
-        <div style="background-color: #ecfdf5; border: 1px solid #10b981; border-radius: 6px; padding: 10px 14px; margin-bottom: 20px; font-size: 13px; color: #065f46;">
+        <div style="background-color: #ecfdf5; border: 1px solid #10b981; border-radius: 6px; padding: 12px 16px; margin-bottom: 20px; font-size: 13px; color: #065f46; line-height: 1.5;">
             <strong>Multiplier Normalization:</strong> All scenario multipliers are normalized to identically <strong>1.0000 in 2026</strong> (divided by 2026 raw multiplier), ensuring all trajectories start from the exact observed Q1 FY27 volume of <strong>3.760 mmscmd</strong>.
+            <br><em>2026 starting EV shares differ by scenario (ASSUMPTION); demand multipliers are normalised so all scenarios begin from the observed 3.76 mmscmd.</em>
         </div>
         """, unsafe_allow_html=True)
 
@@ -808,48 +789,129 @@ elif page_selection == "5. Multi-Segment EV Scenarios":
 
         st.markdown("---")
 
-        # Segment-wise S-Curves & Parameter Table
-        col_scurve, col_param = st.columns([1.1, 1.1])
-        
-        with col_scurve:
-            st.markdown("#### Vehicle Category Electrification Curves (Medium EV Baseline)")
-            med_ev = df_ev[df_ev["scenario"] == "Medium EV"]
-            fig_seg = go.Figure()
-            fig_seg.add_trace(go.Scatter(x=med_ev["year"], y=med_ev["ev_fleet_share_3w"], mode="lines+markers", name="3-Wheelers (50% CNG vol)", line=dict(color="#10b981", width=2)))
-            fig_seg.add_trace(go.Scatter(x=med_ev["year"], y=med_ev["ev_fleet_share_4w"], mode="lines+markers", name="4-Wheelers/Cabs (35% CNG vol)", line=dict(color="#0066cc", width=2)))
-            fig_seg.add_trace(go.Scatter(x=med_ev["year"], y=med_ev["ev_fleet_share_bus"], mode="lines+markers", name="Buses (15% CNG vol)", line=dict(color="#f59e0b", width=2)))
-            fig_seg.add_trace(go.Scatter(x=med_ev["year"], y=med_ev["ev_fleet_share"], mode="lines+markers", name="Total Composite EV Fleet Share", line=dict(color="#0f172a", width=3, dash="dash")))
-            
-            fig_seg.update_layout(
-                height=350,
-                margin=dict(l=30, r=20, t=10, b=30),
-                xaxis=dict(title="Year", tickmode="linear", tick0=2026, dtick=1, showgrid=True, gridcolor="#f1f5f9"),
-                yaxis=dict(title="EV Fleet Share", showgrid=True, gridcolor="#f1f5f9", tickformat=".0%"),
-                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-                plot_bgcolor="white"
-            )
-            st.plotly_chart(fig_seg, use_container_width=True)
+        # Parameter Table (Segment S-curve chart removed per requirements)
+        st.markdown("### Scenario Assumptions & Source Provenance")
+        raw_params = [
+            {
+                "Parameter": "3W 2030 Sales Target",
+                "Medium Value": "80%",
+                "Medium Tag": "SOURCED",
+                "High Value": "95%",
+                "High Tag": "ASSUMPTION",
+                "Citation / Note": "Medium (80%) from NITI Aayog (2021) p. 12; High (95%) is ASSUMPTION"
+            },
+            {
+                "Parameter": "3W Operational Lifetime",
+                "Medium Value": "8 Years",
+                "Medium Tag": "ASSUMPTION",
+                "High Value": "7 Years",
+                "High Tag": "ASSUMPTION",
+                "Citation / Note": "analyst assumption, no source"
+            },
+            {
+                "Parameter": "3W Fleet Ceiling (L)",
+                "Medium Value": "55%",
+                "Medium Tag": "ASSUMPTION",
+                "High Value": "70%",
+                "High Tag": "ASSUMPTION",
+                "Citation / Note": "Derived from 80% sales target with 8-yr turnover lag"
+            },
+            {
+                "Parameter": "4W Commercial Cab Sales",
+                "Medium Value": "70%",
+                "Medium Tag": "SOURCED",
+                "High Value": "100%",
+                "High Tag": "ASSUMPTION",
+                "Citation / Note": "Medium (70%) from NITI Aayog (2021) p. 12; High (100%) is ASSUMPTION"
+            },
+            {
+                "Parameter": "4W Private Car Sales",
+                "Medium Value": "30%",
+                "Medium Tag": "SOURCED",
+                "High Value": "40%",
+                "High Tag": "ASSUMPTION",
+                "Citation / Note": "Medium (30%) from NITI Aayog (2021) p. 12; High (40%) is ASSUMPTION"
+            },
+            {
+                "Parameter": "4W Operational Lifetime",
+                "Medium Value": "10 Years",
+                "Medium Tag": "ASSUMPTION",
+                "High Value": "10 Years",
+                "High Tag": "ASSUMPTION",
+                "Citation / Note": "analyst assumption, no source"
+            },
+            {
+                "Parameter": "4W Fleet Ceiling (L)",
+                "Medium Value": "25%",
+                "Medium Tag": "ASSUMPTION",
+                "High Value": "40%",
+                "High Tag": "ASSUMPTION",
+                "Citation / Note": "Derived from composite 40% sales target with 10-yr turnover lag"
+            },
+            {
+                "Parameter": "Bus 2030 Sales Target",
+                "Medium Value": "40%",
+                "Medium Tag": "SOURCED",
+                "High Value": "75%",
+                "High Tag": "ASSUMPTION",
+                "Citation / Note": "Medium (40%) from NITI Aayog (2021) p. 12; High (75%) is ASSUMPTION"
+            },
+            {
+                "Parameter": "Bus Operational Lifetime",
+                "Medium Value": "12 Years",
+                "Medium Tag": "ASSUMPTION",
+                "High Value": "10 Years",
+                "High Tag": "ASSUMPTION",
+                "Citation / Note": "analyst assumption, no source"
+            },
+            {
+                "Parameter": "Bus Fleet Ceiling (L)",
+                "Medium Value": "28%",
+                "Medium Tag": "ASSUMPTION",
+                "High Value": "45%",
+                "High Tag": "ASSUMPTION",
+                "Citation / Note": "Derived from 40% sales target with 12-yr municipal replacement"
+            },
+            {
+                "Parameter": "CNG Demand Weight (3W)",
+                "Medium Value": "50%",
+                "Medium Tag": "ASSUMPTION",
+                "High Value": "50%",
+                "High Tag": "ASSUMPTION",
+                "Citation / Note": "Estimated retail CNG volume share in Gujarat CGDs"
+            },
+            {
+                "Parameter": "CNG Demand Weight (4W)",
+                "Medium Value": "35%",
+                "Medium Tag": "ASSUMPTION",
+                "High Value": "35%",
+                "High Tag": "ASSUMPTION",
+                "Citation / Note": "Estimated retail CNG volume share in Gujarat CGDs"
+            },
+            {
+                "Parameter": "CNG Demand Weight (Bus)",
+                "Medium Value": "15%",
+                "Medium Tag": "ASSUMPTION",
+                "High Value": "15%",
+                "High Tag": "ASSUMPTION",
+                "Citation / Note": "Estimated retail CNG volume share in Gujarat CGDs"
+            }
+        ]
 
-        with col_param:
-            st.markdown("#### Scenario Assumptions & Source Provenance")
-            params_table = pd.DataFrame([
-                {"Parameter": "3W 2030 Sales Target", "Medium Value": "80%", "High Value": "95%", "Tag": "SOURCED", "Citation": "NITI Aayog (2021) p. 12"},
-                {"Parameter": "3W Operational Lifetime", "Medium Value": "8 Years", "High Value": "7 Years", "Tag": "ASSUMPTION", "Citation": "Typical auto-rickshaw commercial lifecycle"},
-                {"Parameter": "3W Fleet Ceiling (L)", "Medium Value": "55%", "High Value": "70%", "Tag": "ASSUMPTION", "Citation": "Derived from 80% sales target with 8-yr turnover lag"},
-                {"Parameter": "4W Commercial Cab Sales", "Medium Value": "70%", "High Value": "100%", "Tag": "SOURCED", "Citation": "NITI Aayog (2021) p. 12"},
-                {"Parameter": "4W Private Car Sales", "Medium Value": "30%", "High Value": "40%", "Tag": "SOURCED", "Citation": "NITI Aayog (2021) p. 12"},
-                {"Parameter": "4W Fleet Ceiling (L)", "Medium Value": "25%", "High Value": "40%", "Tag": "ASSUMPTION", "Citation": "Derived from composite 40% sales target with 10-yr turnover"},
-                {"Parameter": "Bus 2030 Sales Target", "Medium Value": "40%", "High Value": "75%", "Tag": "SOURCED", "Citation": "NITI Aayog (2021) p. 12"},
-                {"Parameter": "Bus Fleet Ceiling (L)", "Medium Value": "28%", "High Value": "45%", "Tag": "ASSUMPTION", "Citation": "Derived from 40% sales target with 12-yr municipal replacement"},
-                {"Parameter": "CNG Demand Weight (3W)", "Medium Value": "50%", "High Value": "50%", "Tag": "ASSUMPTION", "Citation": "Estimated retail CNG volume share in Gujarat CGDs"},
-                {"Parameter": "CNG Demand Weight (4W)", "Medium Value": "35%", "High Value": "35%", "Tag": "ASSUMPTION", "Citation": "Estimated retail CNG volume share in Gujarat CGDs"},
-                {"Parameter": "CNG Demand Weight (Bus)", "Medium Value": "15%", "High Value": "15%", "Tag": "ASSUMPTION", "Citation": "Estimated retail CNG volume share in Gujarat CGDs"}
-            ])
-            params_table["Status Tag"] = params_table["Tag"].apply(badge_html)
-            st.write(
-                params_table[["Parameter", "Medium Value", "High Value", "Status Tag", "Citation"]].to_html(escape=False, index=False),
-                unsafe_allow_html=True
-            )
+        display_params = []
+        for p in raw_params:
+            display_params.append({
+                "Parameter": p["Parameter"],
+                "Medium Value": f"{p['Medium Value']} {badge_html(p['Medium Tag'])}",
+                "High Value": f"{p['High Value']} {badge_html(p['High Tag'])}",
+                "Citation / Note": p["Citation / Note"]
+            })
+
+        params_df = pd.DataFrame(display_params)
+        st.write(
+            params_df.to_html(escape=False, index=False),
+            unsafe_allow_html=True
+        )
 
     render_footer()
 
@@ -857,9 +919,9 @@ elif page_selection == "5. Multi-Segment EV Scenarios":
 # ==============================================================================
 # PAGE 6: LIMITATIONS & DATA INGESTION ROADMAP
 # ==============================================================================
-elif page_selection == "6. Limitations & Data Ingestion Roadmap":
-    st.title("Methodological Limitations & GGCL Ingestion Roadmap")
-    st.subheader("Transparent Audit, Data Deficits, and Enterprise Production Integration")
+elif page_selection == "6. Limitations and next steps":
+    st.title("Methodological Limitations & Next Steps")
+    st.subheader("Transparent Audit, Data Deficits, and Ingestion Roadmap")
     render_page_badges(["REAL", "MODELLED", "ASSUMPTION"])
 
     # Limitations List
@@ -880,7 +942,7 @@ elif page_selection == "6. Limitations & Data Ingestion Roadmap":
            - **Diagnosis**: Conservative $d_{\min} + 1.5 \text{ km} \approx 4.6 \text{ km}$ exclusion zones around the 92 approximate/pincode-centroid stations blanket the central core. Removing verified stations cannot open up core cells because approximate stations block them. The algorithm correctly routes all candidate capacity to unconstrained peripheral growth corridors.
         
         3. **Statewide vs. District-Level VAHAN Registrations**:
-           - **Limitation**: VAHAN registrations are currently aggregated at the Gujarat statewide level. RTO-specific series for Surat (`GJ-05`, `GJ-28`) and Rajkot (`GJ-03`, `GJ-36`) have not yet been isolated into separate local econometric features.
+           - **Limitation**: VAHAN registrations are currently aggregated at the Gujarat statewide level. RTO-specific series for Surat (`GJ-05`, `GJ-28`) and Rajkot (`GJ-03`, `GJ-36`) have not yet been isolated into separate local features.
         """)
 
     with l2:
@@ -895,14 +957,14 @@ elif page_selection == "6. Limitations & Data Ingestion Roadmap":
         
         6. **Competitor Proximity Incompleteness**:
            - **Limitation**: OpenStreetMap contains only 2 competitor stations near Surat and 2 near Rajkot (~1% network coverage). Competitor proximity is reported purely as an illustrative proof-of-concept.
-        """)
+        """, unsafe_allow_html=True)
 
     st.markdown("---")
 
     # GGCL Enterprise Data Ingestion Roadmap
     st.markdown("### GGCL Enterprise Data Ingestion Roadmap")
     st.markdown("""
-    The entire pipeline is engineered to accept GGCL's proprietary station telemetry with zero architectural refactoring. Once GGCL provides its internal station records, drop the CSV file into `data/raw/ggcl_station_sales.csv`:
+    The entire pipeline is designed to accept GGCL's proprietary station telemetry. Once GGCL provides its internal station records, drop the CSV file into `data/raw/ggcl_station_sales.csv`:
     """)
 
     # Expected CSV Schema
@@ -922,7 +984,7 @@ elif page_selection == "6. Limitations & Data Ingestion Roadmap":
 
     # Workflow Steps
     st.markdown(r"""
-    #### Automated Processing Workflow Upon Ingestion
+    #### Planned Processing Workflow Upon Ingestion
     ```bash
     # 1. Place proprietary export in raw data folder
     cp ggcl_station_sales_2026.csv data/raw/ggcl_station_sales.csv
@@ -933,7 +995,7 @@ elif page_selection == "6. Limitations & Data Ingestion Roadmap":
     python src/siting/rank_sites.py --target-revenue
     ```
     - **Step 1: Ground-Truth Calibration**: The spacing model replaces geographic population overlap with an empirical revenue cannibalization regression ($\Delta \text{Sales}_i = f(\text{Distance}_{ij}, \text{Sales}_j)$).
-    - **Step 2: Queue & Peak Congestion**: Dispensers and compressor ratings unlock the Module E hourly queue delay simulator, prioritizing relief stations near congested nodes.
+    - **Step 2: Queue & Peak Congestion**: Dispensers and compressor ratings unlock the hourly queue delay simulator, prioritizing relief stations near congested nodes.
     - **Step 3: Financial ROI**: Candidate scores convert directly into projected payback periods and internal rate of return (IRR).
     """)
 

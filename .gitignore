@@ -9,3 +9,4 @@ venv/
 # Large downloads (re-create with the scripts in src/data_collection)
 data/raw/*.zip
 data/raw/*.tif
+share/

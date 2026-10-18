@@ -86,8 +86,7 @@ def render_footer():
         '<div style="text-align: center; color: #64748b; font-size: 12.5px; padding: 10px 0;">'
         '<strong>Team ID: TM000846</strong> | '
         'Seva First Innovation Challenge 2026 (PS000002) | '
-        'Gujarat Gas Company Limited Network Expansion | '
-        '<a href="https://github.com/TM000846/cng-demand-planner" target="_blank" style="color: #0066cc; text-decoration: none;">GitHub Repository</a>'
+        '<a href="https://github.com/Soha1711/SSA_hack" target="_blank" style="color: #0066cc; text-decoration: none;">GitHub Repository</a>'
         '</div>',
         unsafe_allow_html=True
     )
